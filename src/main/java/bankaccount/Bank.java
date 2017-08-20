@@ -1,8 +1,9 @@
 package bankaccount;
 
 public class Bank {
+    private final Account account = new Account();
+
     public Account makeDeposit(AccountNumber accountNumber, Amount amount) {
-        final Account account = new Account();
         account.deposit(amount);
         return account;
     }

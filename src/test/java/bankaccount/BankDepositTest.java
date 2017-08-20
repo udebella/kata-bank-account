@@ -22,7 +22,21 @@ public class BankDepositTest {
                 .build();
 
         Account account = bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
+
         assertThat(account.accountBalance())
                 .isEqualTo(new AmountBuilder().withValueAsCents(10).build());
+    }
+
+    @Test
+    public void depositing_two_times_in_a_row_on_the_same_account_should_update_the_account() {
+        final Amount amount = new AmountBuilder()
+                .withValueAsCents(10)
+                .build();
+
+        bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
+        Account account = bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
+
+        assertThat(account.accountBalance())
+                .isEqualTo(new AmountBuilder().withValueAsCents(20).build());
     }
 }
