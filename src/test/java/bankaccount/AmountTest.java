@@ -26,4 +26,14 @@ public class AmountTest {
         assertThat(amountBuilder.withValueAsCents(100).build())
                 .isEqualTo(amountBuilder.withValueAsCents(100).build());
     }
+
+    @Test
+    public void should_allow_to_add_amounts() {
+        final Amount amount = amountBuilder.withValueAsCents(100).build();
+
+        final Amount addition = amount.add(amountBuilder.withValueAsCents(50).build());
+
+        assertThat(addition)
+                .isEqualTo(amountBuilder.withValueAsCents(150).build());
+    }
 }

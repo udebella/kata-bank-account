@@ -1,7 +1,9 @@
 package bankaccount;
 
 public class Bank {
-    public boolean makeDeposit(Amount amount) {
-        return false;
+    public Account makeDeposit(Amount amount) {
+        final Account account = new Account();
+        account.deposit(amount);
+        return account;
     }
 }

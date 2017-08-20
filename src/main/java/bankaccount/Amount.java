@@ -7,6 +7,12 @@ public class Amount {
         this.valueAsCents = valueAsCents;
     }
 
+    public Amount add(Amount amountToAdd) {
+        return new AmountBuilder()
+                .withValueAsCents(amountToAdd.valueAsCents + valueAsCents)
+                .build();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

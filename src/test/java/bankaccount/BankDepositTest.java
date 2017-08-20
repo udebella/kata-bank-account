@@ -1,5 +1,6 @@
 package bankaccount;
 
+import bankaccount.Amount.AmountBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,11 +15,13 @@ public class BankDepositTest {
     }
 
     @Test
-    public void should_not_be_possible_to_deposit_null_amount() {
-        final Amount amount = new Amount.AmountBuilder()
-                .withValueAsCents(0)
+    public void deposit_should_update_account_balance() {
+        final Amount amount = new AmountBuilder()
+                .withValueAsCents(10)
                 .build();
 
-        assertThat(bank.makeDeposit(amount)).isFalse();
+        Account account = bank.makeDeposit(amount);
+        assertThat(account.accountBalance())
+                .isEqualTo(new AmountBuilder().withValueAsCents(10).build());
     }
 }
