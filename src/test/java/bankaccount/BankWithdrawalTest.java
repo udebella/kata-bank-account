@@ -21,4 +21,12 @@ public class BankWithdrawalTest {
 
         bank.withdraw(accountNumber, amount);
     }
+
+    @Test(expected = NotEnoughMoney.class)
+    public void should_not_allow_to_withdraw_if_there_is_not_enough_money_on_the_account() throws Exception {
+        final AccountNumber accountNumber = AccountNumber.fromNumber(2);
+        final Amount amount = Amount.fromValue(100);
+
+        bank.withdraw(accountNumber, amount);
+    }
 }

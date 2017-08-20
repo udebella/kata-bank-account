@@ -19,7 +19,11 @@ public class Bank {
         return account;
     }
 
-    public Account withdraw(AccountNumber accountNumber, Amount amount) throws AccountNotFoundException {
-        throw new AccountNotFoundException("Account " + accountNumber + " not found");
+    public Account withdraw(AccountNumber accountNumber, Amount amount) throws AccountNotFoundException, NotEnoughMoney {
+        Account account = accounts.get(accountNumber);
+        if (account == null) {
+            throw new AccountNotFoundException("Account " + accountNumber + " not found");
+        }
+        throw new NotEnoughMoney("Account does not have enough money");
     }
 }
