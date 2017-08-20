@@ -1,8 +1,9 @@
 package bankaccount;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BankDepositTest {
     private Bank bank;
@@ -18,6 +19,6 @@ public class BankDepositTest {
                 .withValueAsCents(0)
                 .build();
 
-        Assertions.assertThat(bank.makeDeposit(amount)).isFalse();
+        assertThat(bank.makeDeposit(amount)).isFalse();
     }
 }

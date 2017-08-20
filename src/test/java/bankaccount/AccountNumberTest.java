@@ -1,9 +1,10 @@
 package bankaccount;
 
 import bankaccount.AccountNumber.AccountNumberBuilder;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountNumberTest {
     private AccountNumberBuilder accountNumberBuilder;
@@ -15,7 +16,7 @@ public class AccountNumberTest {
 
     @Test
     public void same_account_numbers_should_be_equal() {
-        Assertions.assertThat(new AccountNumberBuilder().withNumber(1).build())
+        assertThat(new AccountNumberBuilder().withNumber(1).build())
                 .isEqualTo(accountNumberBuilder.withNumber(1).build());
     }
 }
