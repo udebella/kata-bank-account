@@ -4,6 +4,7 @@ import bankaccount.Amount.AmountBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import static bankaccount.AccountNumber.AccountNumberBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BankDepositTest {
@@ -20,7 +21,7 @@ public class BankDepositTest {
                 .withValueAsCents(10)
                 .build();
 
-        Account account = bank.makeDeposit(amount);
+        Account account = bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
         assertThat(account.accountBalance())
                 .isEqualTo(new AmountBuilder().withValueAsCents(10).build());
     }
