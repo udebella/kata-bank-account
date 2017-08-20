@@ -28,6 +28,13 @@ public class Amount {
         return valueAsCents;
     }
 
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "valueAsCents=" + valueAsCents +
+                '}';
+    }
+
     public static class AmountBuilder {
         private int valueAsCents;
 

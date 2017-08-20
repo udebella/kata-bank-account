@@ -13,4 +13,11 @@ public class AccountTest {
         assertThat(newAccount.accountBalance())
                 .isEqualTo(new AmountBuilder().withValueAsCents(0).build());
     }
+
+    @Test
+    public void should_display_accounts() {
+        final Account newAccount = new Account();
+
+        assertThat(newAccount.toString()).isEqualTo("Account{amount=Amount{valueAsCents=0}}");
+    }
 }

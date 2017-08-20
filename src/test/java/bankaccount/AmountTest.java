@@ -36,4 +36,12 @@ public class AmountTest {
         assertThat(addition)
                 .isEqualTo(amountBuilder.withValueAsCents(150).build());
     }
+
+    @Test
+    public void should_display_amounts_properly() {
+        final Amount amount = amountBuilder.withValueAsCents(100).build();
+
+        assertThat(amount.toString())
+                .isEqualTo("Amount{valueAsCents=100}");
+    }
 }

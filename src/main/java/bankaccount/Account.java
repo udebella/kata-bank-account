@@ -16,4 +16,11 @@ public class Account {
     public void deposit(Amount amount) {
         this.amount = this.amount.add(amount);
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "amount=" + amount +
+                '}';
+    }
 }
