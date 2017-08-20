@@ -30,7 +30,7 @@ public class Bank {
         return account;
     }
 
-    public List<String> consult(AccountNumber accountNumber) {
+    public List<Operation> consult(AccountNumber accountNumber) {
         return Collections.EMPTY_LIST;
     }
 }
