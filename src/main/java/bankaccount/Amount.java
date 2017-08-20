@@ -7,6 +7,21 @@ public class Amount {
         this.valueAsCents = valueAsCents;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Amount amount = (Amount) o;
+
+        return valueAsCents == amount.valueAsCents;
+    }
+
+    @Override
+    public int hashCode() {
+        return valueAsCents;
+    }
+
     public static class AmountBuilder {
         private int valueAsCents;
 
