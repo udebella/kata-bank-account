@@ -23,7 +23,7 @@ public class BankDepositTest {
     }
 
     @Test
-    public void deposit_should_update_account_balance() {
+    public void deposit_should_update_account_balance() throws AccountNotFoundException {
         final Amount amount = amountBuilder.withValueAsCents(10).build();
         final AccountNumber accountNumber = accountNumberBuilder.withNumber(1).build();
 
@@ -34,7 +34,7 @@ public class BankDepositTest {
     }
 
     @Test
-    public void depositing_two_times_in_a_row_on_the_same_account_should_update_the_account() {
+    public void depositing_two_times_in_a_row_on_the_same_account_should_update_the_account() throws AccountNotFoundException {
         final Amount amount = amountBuilder.withValueAsCents(10).build();
         final AccountNumber accountNumber = accountNumberBuilder.withNumber(1).build();
 
@@ -46,7 +46,7 @@ public class BankDepositTest {
     }
 
     @Test
-    public void should_manage_multiple_different_accounts() {
+    public void should_manage_multiple_different_accounts() throws AccountNotFoundException {
         final Amount amount = amountBuilder.withValueAsCents(10).build();
         final AccountNumber accountNumber = accountNumberBuilder.withNumber(1).build();
         final AccountNumber accountNumber2 = accountNumberBuilder.withNumber(2).build();
@@ -55,5 +55,13 @@ public class BankDepositTest {
         Account account2 = bank.makeDeposit(accountNumber2, amount);
 
         assertThat(account).isNotEqualTo(account2);
+    }
+
+    @Test(expected = AccountNotFoundException.class)
+    public void should_not_allow_to_deposit_on_an_unregistered_account() throws AccountNotFoundException {
+        final Amount amount = amountBuilder.withValueAsCents(10).build();
+        final AccountNumber accountNumber = accountNumberBuilder.withNumber(3).build();
+
+        bank.makeDeposit(accountNumber, amount);
     }
 }
