@@ -1,6 +1,5 @@
 package bankaccount;
 
-import bankaccount.AccountNumber.AccountNumberBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,9 +17,7 @@ public class BankConsultTest {
 
     @Test
     public void account_should_have_empty_history_by_default() {
-        AccountNumber accountNumber = new AccountNumberBuilder()
-                .withNumber(1)
-                .build();
+        AccountNumber accountNumber = AccountNumber.fromNumber(1);
 
         assertThat(bank.consult(accountNumber)).isEqualTo(Collections.EMPTY_LIST);
     }
