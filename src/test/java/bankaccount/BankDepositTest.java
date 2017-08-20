@@ -13,7 +13,11 @@ public class BankDepositTest {
     }
 
     @Test
-    public void should_not_be_possible_to_deposit_negative_amount() {
-        Assertions.assertThat(bank.makeDeposit(-1)).isFalse();
+    public void should_not_be_possible_to_deposit_null_amount() {
+        final Amount amount = new Amount.AmountBuilder()
+                .withValueAsCents(0)
+                .build();
+
+        Assertions.assertThat(bank.makeDeposit(amount)).isFalse();
     }
 }
