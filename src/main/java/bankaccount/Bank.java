@@ -18,4 +18,8 @@ public class Bank {
         account.deposit(amount);
         return account;
     }
+
+    public Account withdraw(AccountNumber accountNumber, Amount amount) throws AccountNotFoundException {
+        throw new AccountNotFoundException("Account " + accountNumber + " not found");
+    }
 }
