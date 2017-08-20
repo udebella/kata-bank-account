@@ -1,12 +1,14 @@
 package bankaccount;
 
-import bankaccount.Amount.AmountBuilder;
-
 public class Account {
     private Amount amount;
 
     public Account() {
-        this.amount = new AmountBuilder().withValueAsCents(0).build();
+        this.amount = Amount.fromValue(0);
+    }
+
+    public Account(Amount amount) {
+        this.amount = amount;
     }
 
     public Amount accountBalance() {
@@ -22,5 +24,9 @@ public class Account {
         return "Account{" +
                 "amount=" + amount +
                 '}';
+    }
+
+    public static Account fromAmount(Amount amount) {
+        return new Account(amount);
     }
 }

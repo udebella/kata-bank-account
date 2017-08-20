@@ -8,9 +8,7 @@ public class Amount {
     }
 
     public Amount add(Amount amountToAdd) {
-        return new AmountBuilder()
-                .withValueAsCents(amountToAdd.valueAsCents + valueAsCents)
-                .build();
+        return Amount.fromValue(amountToAdd.valueAsCents + valueAsCents);
     }
 
     @Override
@@ -35,19 +33,10 @@ public class Amount {
                 '}';
     }
 
-    public static class AmountBuilder {
-        private int valueAsCents;
-
-        public AmountBuilder withValueAsCents(int valueAsCents) {
-            this.valueAsCents = valueAsCents;
-            return this;
+    public static Amount fromValue(int valueAsCents) {
+        if (valueAsCents < 0) {
+            throw new IllegalStateException("Amounts should be positive values");
         }
-
-        public Amount build() {
-            if (valueAsCents < 0) {
-                throw new IllegalStateException("Amounts should be positive values");
-            }
-            return new Amount(valueAsCents);
-        }
+        return new Amount(valueAsCents);
     }
 }

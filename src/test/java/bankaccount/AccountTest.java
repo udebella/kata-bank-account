@@ -1,6 +1,5 @@
 package bankaccount;
 
-import bankaccount.Amount.AmountBuilder;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +10,7 @@ public class AccountTest {
         final Account newAccount = new Account();
 
         assertThat(newAccount.accountBalance())
-                .isEqualTo(new AmountBuilder().withValueAsCents(0).build());
+                .isEqualTo(Amount.fromValue(0));
     }
 
     @Test
