@@ -11,6 +11,13 @@ public class Amount {
         return Amount.fromValue(amountToAdd.valueAsCents + valueAsCents);
     }
 
+    public Amount substract(Amount amountToSubstract) throws NotEnoughMoney {
+        if (valueAsCents < amountToSubstract.valueAsCents) {
+            throw new NotEnoughMoney("Account does not have enough money");
+        }
+        return Amount.fromValue(valueAsCents - amountToSubstract.valueAsCents);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

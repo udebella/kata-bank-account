@@ -1,5 +1,6 @@
 package bankaccount;
 
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,5 +29,15 @@ public class BankWithdrawalTest {
         final Amount amount = Amount.fromValue(100);
 
         bank.withdraw(accountNumber, amount);
+    }
+
+    @Test
+    public void should_retrieve_amount_from_account_balance() throws Exception {
+        final AccountNumber accountNumber = AccountNumber.fromNumber(1);
+        final Amount amount = Amount.fromValue(100);
+
+        Account account = bank.withdraw(accountNumber, amount);
+
+        Assertions.assertThat(account.accountBalance()).isEqualTo(Amount.fromValue(900));
     }
 }

@@ -3,7 +3,6 @@ package bankaccount;
 import org.junit.Before;
 import org.junit.Test;
 
-import static bankaccount.AccountNumber.AccountNumberBuilder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BankDepositTest {

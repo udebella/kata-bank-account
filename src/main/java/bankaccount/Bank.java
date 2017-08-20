@@ -24,6 +24,7 @@ public class Bank {
         if (account == null) {
             throw new AccountNotFoundException("Account " + accountNumber + " not found");
         }
-        throw new NotEnoughMoney("Account does not have enough money");
+        account.withdraw(amount);
+        return account;
     }
 }

@@ -15,6 +15,10 @@ public class Account {
         this.amount = this.amount.add(amount);
     }
 
+    public void withdraw(Amount amount) throws NotEnoughMoney {
+        this.amount = this.amount.substract(amount);
+    }
+
     @Override
     public String toString() {
         return "Account{" +
