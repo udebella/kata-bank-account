@@ -20,8 +20,11 @@ public class BankDepositTest {
         final Amount amount = new AmountBuilder()
                 .withValueAsCents(10)
                 .build();
+        final AccountNumber accountNumber = new AccountNumberBuilder()
+                .withNumber(1)
+                .build();
 
-        Account account = bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
+        Account account = bank.makeDeposit(accountNumber, amount);
 
         assertThat(account.accountBalance())
                 .isEqualTo(new AmountBuilder().withValueAsCents(10).build());
@@ -32,9 +35,12 @@ public class BankDepositTest {
         final Amount amount = new AmountBuilder()
                 .withValueAsCents(10)
                 .build();
+        final AccountNumber accountNumber = new AccountNumberBuilder()
+                .withNumber(1)
+                .build();
 
-        bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
-        Account account = bank.makeDeposit(new AccountNumberBuilder().withNumber(1).build(), amount);
+        bank.makeDeposit(accountNumber, amount);
+        Account account = bank.makeDeposit(accountNumber, amount);
 
         assertThat(account.accountBalance())
                 .isEqualTo(new AmountBuilder().withValueAsCents(20).build());
