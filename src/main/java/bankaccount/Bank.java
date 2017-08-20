@@ -1,6 +1,8 @@
 package bankaccount;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Bank {
@@ -26,5 +28,9 @@ public class Bank {
         }
         account.withdraw(amount);
         return account;
+    }
+
+    public List<String> consult(AccountNumber accountNumber) {
+        return Collections.EMPTY_LIST;
     }
 }
