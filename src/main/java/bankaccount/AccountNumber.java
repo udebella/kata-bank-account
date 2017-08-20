@@ -22,6 +22,10 @@ public class AccountNumber {
         return number;
     }
 
+    public static AccountNumber fromNumber(int number) {
+        return new AccountNumber(number);
+    }
+
     public static class AccountNumberBuilder {
         private int number;
 
