@@ -3,10 +3,6 @@ package bankaccount;
 public class Account {
     private Amount amount;
 
-    public Account() {
-        this.amount = Amount.fromValue(0);
-    }
-
     public Account(Amount amount) {
         this.amount = amount;
     }
@@ -26,7 +22,7 @@ public class Account {
                 '}';
     }
 
-    public static Account fromAmount(Amount amount) {
-        return new Account(amount);
+    public static Account fromAmount(Amount startingAmount) {
+        return new Account(startingAmount);
     }
 }

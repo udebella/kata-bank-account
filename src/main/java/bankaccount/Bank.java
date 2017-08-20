@@ -6,8 +6,8 @@ import java.util.Map;
 public class Bank {
     private final Map<AccountNumber, Account> accounts = new HashMap<>();
 
-    public void addAccount(AccountNumber accountNumber, Amount build) {
-        accounts.put(accountNumber, new Account());
+    public void addAccount(AccountNumber accountNumber, Amount amount) {
+        accounts.put(accountNumber, Account.fromAmount(amount));
     }
 
     public Account makeDeposit(AccountNumber accountNumber, Amount amount) throws AccountNotFoundException {

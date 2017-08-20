@@ -25,17 +25,4 @@ public class AccountNumber {
     public static AccountNumber fromNumber(int number) {
         return new AccountNumber(number);
     }
-
-    public static class AccountNumberBuilder {
-        private int number;
-
-        public AccountNumberBuilder withNumber(int number) {
-            this.number = number;
-            return this;
-        }
-
-        public AccountNumber build() {
-            return new AccountNumber(this.number);
-        }
-    }
 }
