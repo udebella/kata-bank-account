@@ -1,4 +1,4 @@
 package bankaccount;
 
-public class Operation {
+public interface Operation {
 }

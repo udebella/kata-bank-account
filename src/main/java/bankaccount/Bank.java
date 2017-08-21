@@ -30,7 +30,7 @@ public class Bank {
         return account;
     }
 
-    public List<Operation> consult(AccountNumber accountNumber) {
-        return Collections.EMPTY_LIST;
+    public List<Operation> consult(AccountNumber accountNumber) throws AccountNotFoundException {
+        throw new AccountNotFoundException(accountNumber + " is not found");
     }
 }
