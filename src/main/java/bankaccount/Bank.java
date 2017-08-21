@@ -31,6 +31,10 @@ public class Bank {
     }
 
     public List<Operation> consult(AccountNumber accountNumber) throws AccountNotFoundException {
-        throw new AccountNotFoundException(accountNumber + " is not found");
+        Account account = accounts.get(accountNumber);
+        if (account == null) {
+            throw new AccountNotFoundException(accountNumber + " is not found");
+        }
+        return account.getOperations();
     }
 }

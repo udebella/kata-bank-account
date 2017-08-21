@@ -1,9 +1,14 @@
 package bankaccount;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private Amount amount;
+    private List<Operation> operations = new ArrayList<>();
 
-    public Account(Amount amount) {
+    private Account(Amount amount) {
+        operations.add(new CreationOperation(amount));
         this.amount = amount;
     }
 
@@ -17,6 +22,10 @@ public class Account {
 
     public void withdraw(Amount amount) throws NotEnoughMoney {
         this.amount = this.amount.substract(amount);
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
     }
 
     @Override
