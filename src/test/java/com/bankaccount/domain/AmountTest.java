@@ -5,11 +5,6 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AmountTest {
-    @Test(expected = IllegalStateException.class)
-    public void should_not_allow_negative_amounts() {
-        Amount.fromValue(-1);
-    }
-
     @Test
     public void same_amounts_should_be_equal() {
         assertThat(Amount.fromValue(100))

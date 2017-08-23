@@ -40,9 +40,6 @@ public class Amount {
     }
 
     public static Amount fromValue(int valueAsCents) {
-        if (valueAsCents < 0) {
-            throw new IllegalStateException("Amounts should be positive values");
-        }
         return new Amount(valueAsCents);
     }
 }
