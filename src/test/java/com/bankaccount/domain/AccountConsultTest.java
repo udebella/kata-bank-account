@@ -34,6 +34,6 @@ public class AccountConsultTest {
 
         account.withdraw(Amount.fromValue(10));
 
-        assertThat(account.consult()).contains(WithdrawOperation.fromAmount(Amount.fromValue(10)));
+        assertThat(account.consult()).contains(WithdrawOperation.fromAmount(Amount.fromValue(-10)));
     }
 }

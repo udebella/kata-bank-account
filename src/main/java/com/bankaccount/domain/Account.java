@@ -27,7 +27,7 @@ public class Account {
     }
 
     public void withdraw(Amount amount) {
-        operations.add(WithdrawOperation.fromAmount(amount));
+        operations.add(WithdrawOperation.fromAmount(amount.negative()));
         this.amount = this.amount.add(amount.negative());
     }
 
