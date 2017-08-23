@@ -27,4 +27,13 @@ public class AccountConsultTest {
 
         assertThat(account.consult()).contains(DepositOperation.fromAmount(Amount.fromValue(10)));
     }
+
+    @Test
+    public void history_should_keep_track_of_withdrawal() {
+        final Account account = Account.fromAmount(Amount.fromValue(100));
+
+        account.withdraw(Amount.fromValue(10));
+
+        assertThat(account.consult()).contains(WithdrawOperation.fromAmount(Amount.fromValue(10)));
+    }
 }
