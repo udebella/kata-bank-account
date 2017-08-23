@@ -22,4 +22,13 @@ public class AccountConsultTest {
 
         assertThat(account.consult()).isEqualTo(Collections.singletonList(new CreationOperation(Amount.NULL_AMOUNT)));
     }
+
+    @Test
+    public void should_display_deposit_in_history() {
+        final Account account = Account.fromAmount(Amount.NULL_AMOUNT);
+
+        account.deposit(Amount.fromValue(10));
+
+        assertThat(account.consult()).contains(new DepositOperation(Amount.fromValue(10)));
+    }
 }

@@ -21,6 +21,7 @@ public class Account {
     }
 
     public void deposit(Amount amount) {
+        operations.add(new DepositOperation(amount));
         this.amount = this.amount.add(amount);
     }
 
