@@ -6,23 +6,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountConsultTest {
     @Test
-    public void account_should_have_empty_history_by_default() {
+    public void account_should_have_creation_operation_by_default() {
         final Account account = Account.fromAmount(Amount.ZERO);
 
         assertThat(account.consult()).containsExactly(CreationOperation.fromAmount(Amount.ZERO));
     }
 
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void should_not_allow_to_modify_account_history() {
         final Account account = Account.fromAmount(Amount.ZERO);
 
         account.consult().add(CreationOperation.fromAmount(Amount.ZERO));
-
-        assertThat(account.consult()).containsExactly(CreationOperation.fromAmount(Amount.ZERO));
     }
 
     @Test
-    public void should_display_deposit_in_history() {
+    public void history_should_keep_track_of_deposits() {
         final Account account = Account.fromAmount(Amount.ZERO);
 
         account.deposit(Amount.fromValue(10));

@@ -1,6 +1,7 @@
 package com.bankaccount.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Account {
@@ -30,6 +31,6 @@ public class Account {
     }
 
     public List<Operation> consult() {
-        return new ArrayList<>(operations);
+        return Collections.unmodifiableList(operations);
     }
 }
