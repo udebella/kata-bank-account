@@ -28,7 +28,7 @@ public class Account {
 
     public void withdraw(Amount amount) {
         operations.add(WithdrawOperation.fromAmount(amount));
-        this.amount = this.amount.substract(amount);
+        this.amount = this.amount.add(amount.negative());
     }
 
     public List<Operation> consult() {

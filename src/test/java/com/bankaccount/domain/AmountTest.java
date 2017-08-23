@@ -22,10 +22,10 @@ public class AmountTest {
     }
 
     @Test
-    public void should_display_amounts_properly() {
+    public void should_convert_amount_to_negative_value() {
         final Amount amount = Amount.fromValue(100);
 
-        assertThat(amount.toString())
-                .isEqualTo("Amount{valueAsCents=100}");
+        assertThat(amount.negative())
+                .isEqualTo(Amount.fromValue(-100));
     }
 }

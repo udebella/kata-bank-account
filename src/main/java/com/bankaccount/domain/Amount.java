@@ -9,12 +9,16 @@ public class Amount {
         this.valueAsCents = valueAsCents;
     }
 
+    public static Amount fromValue(int valueAsCents) {
+        return new Amount(valueAsCents);
+    }
+
     public Amount add(Amount amountToAdd) {
         return Amount.fromValue(amountToAdd.valueAsCents + valueAsCents);
     }
 
-    public Amount substract(Amount amountToSubstract) {
-        return Amount.fromValue(valueAsCents - amountToSubstract.valueAsCents);
+    public Amount negative() {
+        return new Amount(-valueAsCents);
     }
 
     @Override
@@ -37,9 +41,5 @@ public class Amount {
         return "Amount{" +
                 "valueAsCents=" + valueAsCents +
                 '}';
-    }
-
-    public static Amount fromValue(int valueAsCents) {
-        return new Amount(valueAsCents);
     }
 }
