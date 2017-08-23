@@ -1,4 +1,4 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 public class Amount {
     public static Amount ZERO = new Amount(0);

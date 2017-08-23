@@ -1,4 +1,4 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;

@@ -1,7 +1,7 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 public class CreationOperation extends Operation {
-    public CreationOperation(Amount amount) {
+    private CreationOperation(Amount amount) {
         super(amount);
     }
 
@@ -10,5 +10,9 @@ public class CreationOperation extends Operation {
         return "CreationOperation{" +
                 "amount=" + amount +
                 '}';
+    }
+
+    public static CreationOperation fromAmount(Amount amount) {
+        return new CreationOperation(amount);
     }
 }

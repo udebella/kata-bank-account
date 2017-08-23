@@ -1,4 +1,4 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ public class Account {
     private List<Operation> operations = new ArrayList<>();
 
     private Account(Amount amount) {
-        operations.add(new CreationOperation(amount));
+        operations.add(CreationOperation.fromAmount(amount));
         this.amount = amount;
     }
 
@@ -21,7 +21,7 @@ public class Account {
     }
 
     public void deposit(Amount amount) {
-        operations.add(new DepositOperation(amount));
+        operations.add(DepositOperation.fromAmount(amount));
         this.amount = this.amount.add(amount);
     }
 

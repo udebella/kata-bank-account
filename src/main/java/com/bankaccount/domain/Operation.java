@@ -1,9 +1,9 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 public abstract class Operation {
     protected final Amount amount;
 
-    public Operation(Amount amount) {
+    protected Operation(Amount amount) {
         this.amount = amount;
     }
 

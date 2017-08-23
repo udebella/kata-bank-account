@@ -1,4 +1,4 @@
-package bankaccount;
+package com.bankaccount.domain;
 
 import org.junit.Test;
 
