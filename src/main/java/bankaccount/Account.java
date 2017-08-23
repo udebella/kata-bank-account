@@ -29,6 +29,6 @@ public class Account {
     }
 
     public List<Operation> consult() {
-        return operations;
+        return new ArrayList<>(operations);
     }
 }
