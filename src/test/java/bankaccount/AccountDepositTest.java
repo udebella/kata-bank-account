@@ -10,7 +10,7 @@ public class AccountDepositTest {
 
     @Before
     public void setUp() throws Exception {
-        account = Account.fromAmount(Amount.NULL_AMOUNT);
+        account = Account.fromAmount(Amount.ZERO);
     }
 
     @Test

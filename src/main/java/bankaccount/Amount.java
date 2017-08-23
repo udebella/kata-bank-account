@@ -1,7 +1,7 @@
 package bankaccount;
 
 public class Amount {
-    public static Amount NULL_AMOUNT = new Amount(0);
+    public static Amount ZERO = new Amount(0);
 
     private final int valueAsCents;
 
