@@ -21,4 +21,8 @@ public abstract class Operation {
     public int hashCode() {
         return amount.hashCode();
     }
+
+    public Amount getAmount() {
+        return this.amount;
+    }
 }
