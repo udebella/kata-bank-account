@@ -12,6 +12,10 @@ public class Account {
         this.amount = amount;
     }
 
+    public static Account fromAmount(Amount startingAmount) {
+        return new Account(startingAmount);
+    }
+
     public Amount accountBalance() {
         return amount;
     }
@@ -20,22 +24,11 @@ public class Account {
         this.amount = this.amount.add(amount);
     }
 
-    public void withdraw(Amount amount) throws NotEnoughMoney {
+    public void withdraw(Amount amount) {
         this.amount = this.amount.substract(amount);
     }
 
-    public List<Operation> getOperations() {
+    public List<Operation> consult() {
         return operations;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "amount=" + amount +
-                '}';
-    }
-
-    public static Account fromAmount(Amount startingAmount) {
-        return new Account(startingAmount);
     }
 }

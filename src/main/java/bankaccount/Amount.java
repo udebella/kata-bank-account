@@ -1,6 +1,8 @@
 package bankaccount;
 
 public class Amount {
+    public static Amount NULL_AMOUNT = new Amount(0);
+
     private final int valueAsCents;
 
     private Amount(int valueAsCents) {
@@ -11,10 +13,7 @@ public class Amount {
         return Amount.fromValue(amountToAdd.valueAsCents + valueAsCents);
     }
 
-    public Amount substract(Amount amountToSubstract) throws NotEnoughMoney {
-        if (valueAsCents < amountToSubstract.valueAsCents) {
-            throw new NotEnoughMoney("Account does not have enough money");
-        }
+    public Amount substract(Amount amountToSubstract) {
         return Amount.fromValue(valueAsCents - amountToSubstract.valueAsCents);
     }
 
