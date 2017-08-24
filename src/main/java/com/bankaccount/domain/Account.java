@@ -16,10 +16,9 @@ public class Account {
     }
 
     public Amount accountBalance() {
-        return Amount.fromValue(operations.stream()
+        return operations.stream()
                 .map(Operation::getAmount)
-                .mapToInt(Amount::getValueAsCents)
-                .sum());
+                .reduce(Amount.ZERO, Amount::add);
     }
 
     public void deposit(Amount amount) {

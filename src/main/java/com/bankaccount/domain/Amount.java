@@ -42,8 +42,4 @@ public class Amount {
                 "valueAsCents=" + valueAsCents +
                 '}';
     }
-
-    public int getValueAsCents() {
-        return valueAsCents;
-    }
 }
