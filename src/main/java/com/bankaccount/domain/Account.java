@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Account {
-    private List<Operation> operations = new ArrayList<>();
+    private final List<Operation> operations = new ArrayList<>();
 
     private Account(Amount amount) {
         operations.add(CreationOperation.fromAmount(amount));
