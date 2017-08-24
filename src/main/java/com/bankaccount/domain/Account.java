@@ -11,10 +11,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class Account {
-    private final List<Operation> operations = new ArrayList<>();
+    private final List<LineHistory> history = new ArrayList<>();
 
     private Account(Amount amount, LocalDateTime date) {
-        operations.add(CreationOperation.of(amount, date));
+        final CreationOperation operation = CreationOperation.of(amount, date);
+        final LineHistory lineHistory = LineHistory.of(operation, accountBalance());
+        history.add(lineHistory);
     }
 
     public static Account of(Amount startingAmount, LocalDateTime creationDate) {
@@ -22,20 +24,25 @@ public class Account {
     }
 
     public Amount accountBalance() {
-        return operations.stream()
+        return history.stream()
+                .map(LineHistory::getOperation)
                 .map(Operation::getAmount)
                 .reduce(Amount.ZERO, Amount::add);
     }
 
     public void deposit(Amount amount, LocalDateTime date) {
-        operations.add(DepositOperation.of(amount, date));
+        final DepositOperation operation = DepositOperation.of(amount, date);
+        final LineHistory lineHistory = LineHistory.of(operation, accountBalance());
+        history.add(lineHistory);
     }
 
     public void withdraw(Amount amount, LocalDateTime date) {
-        operations.add(WithdrawOperation.of(amount, date));
+        final WithdrawOperation operation = WithdrawOperation.of(amount, date);
+        final LineHistory lineHistory = LineHistory.of(operation, accountBalance());
+        history.add(lineHistory);
     }
 
-    public List<Operation> consult() {
-        return Collections.unmodifiableList(operations);
+    public List<LineHistory> consult() {
+        return Collections.unmodifiableList(history);
     }
 }
