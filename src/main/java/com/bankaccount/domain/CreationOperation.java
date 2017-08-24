@@ -1,8 +1,10 @@
 package com.bankaccount.domain;
 
+import java.time.LocalDateTime;
+
 public class CreationOperation extends Operation {
-    private CreationOperation(Amount amount) {
-        super(amount);
+    private CreationOperation(Amount amount, LocalDateTime date) {
+        super(amount, date);
     }
 
     @Override
@@ -12,7 +14,7 @@ public class CreationOperation extends Operation {
                 '}';
     }
 
-    public static CreationOperation fromAmount(Amount amount) {
-        return new CreationOperation(amount);
+    public static CreationOperation of(Amount amount, LocalDateTime date) {
+        return new CreationOperation(amount, date);
     }
 }

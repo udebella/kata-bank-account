@@ -3,6 +3,8 @@ package com.bankaccount.domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountDepositTest {
@@ -10,23 +12,23 @@ public class AccountDepositTest {
 
     @Before
     public void setUp() throws Exception {
-        account = Account.fromAmount(Amount.ZERO);
+        account = Account.of(Amount.ZERO, LocalDateTime.now());
     }
 
     @Test
     public void deposit_should_update_account_balance() {
-        account.deposit(Amount.fromValue(10));
+        account.deposit(Amount.of(10), LocalDateTime.now());
 
         assertThat(account.accountBalance())
-                .isEqualTo(Amount.fromValue(10));
+                .isEqualTo(Amount.of(10));
     }
 
     @Test
     public void depositing_two_times_in_a_row_on_the_same_account_should_update_the_account() {
-        account.deposit(Amount.fromValue(10));
-        account.deposit(Amount.fromValue(10));
+        account.deposit(Amount.of(10), LocalDateTime.now());
+        account.deposit(Amount.of(10), LocalDateTime.now());
 
         assertThat(account.accountBalance())
-                .isEqualTo(Amount.fromValue(20));
+                .isEqualTo(Amount.of(20));
     }
 }

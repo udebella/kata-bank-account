@@ -1,5 +1,6 @@
 package com.bankaccount.domain;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,12 +8,12 @@ import java.util.List;
 public class Account {
     private final List<Operation> operations = new ArrayList<>();
 
-    private Account(Amount amount) {
-        operations.add(CreationOperation.fromAmount(amount));
+    private Account(Amount amount, LocalDateTime date) {
+        operations.add(CreationOperation.of(amount, date));
     }
 
-    public static Account fromAmount(Amount startingAmount) {
-        return new Account(startingAmount);
+    public static Account of(Amount startingAmount, LocalDateTime creationDate) {
+        return new Account(startingAmount, creationDate);
     }
 
     public Amount accountBalance() {
@@ -21,12 +22,12 @@ public class Account {
                 .reduce(Amount.ZERO, Amount::add);
     }
 
-    public void deposit(Amount amount) {
-        operations.add(DepositOperation.fromAmount(amount));
+    public void deposit(Amount amount, LocalDateTime date) {
+        operations.add(DepositOperation.of(amount, date));
     }
 
-    public void withdraw(Amount amount) {
-        operations.add(WithdrawOperation.fromAmount(amount));
+    public void withdraw(Amount amount, LocalDateTime date) {
+        operations.add(WithdrawOperation.of(amount, date));
     }
 
     public List<Operation> consult() {

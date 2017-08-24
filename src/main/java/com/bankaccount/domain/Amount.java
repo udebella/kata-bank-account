@@ -9,12 +9,12 @@ public class Amount {
         this.valueAsCents = valueAsCents;
     }
 
-    public static Amount fromValue(int valueAsCents) {
+    public static Amount of(int valueAsCents) {
         return new Amount(valueAsCents);
     }
 
     public Amount add(Amount amountToAdd) {
-        return Amount.fromValue(amountToAdd.valueAsCents + valueAsCents);
+        return Amount.of(amountToAdd.valueAsCents + valueAsCents);
     }
 
     public Amount negative() {

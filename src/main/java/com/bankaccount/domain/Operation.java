@@ -1,10 +1,14 @@
 package com.bankaccount.domain;
 
+import java.time.LocalDateTime;
+
 public abstract class Operation {
     protected final Amount amount;
+    protected final LocalDateTime date;
 
-    protected Operation(Amount amount) {
+    protected Operation(Amount amount, LocalDateTime date) {
         this.amount = amount;
+        this.date = date;
     }
 
     @Override
@@ -14,12 +18,15 @@ public abstract class Operation {
 
         Operation operation = (Operation) o;
 
-        return amount.equals(operation.amount);
+        if (!amount.equals(operation.amount)) return false;
+        return date.equals(operation.date);
     }
 
     @Override
     public int hashCode() {
-        return amount.hashCode();
+        int result = amount.hashCode();
+        result = 31 * result + date.hashCode();
+        return result;
     }
 
     public Amount getAmount() {
