@@ -1,4 +1,6 @@
-package com.bankaccount.domain;
+package com.bankaccount.domain.operations;
+
+import com.bankaccount.domain.Amount;
 
 import java.time.LocalDateTime;
 

@@ -1,5 +1,10 @@
 package com.bankaccount.domain;
 
+import com.bankaccount.domain.operations.CreationOperation;
+import com.bankaccount.domain.operations.DepositOperation;
+import com.bankaccount.domain.operations.Operation;
+import com.bankaccount.domain.operations.WithdrawOperation;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;

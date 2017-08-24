@@ -1,5 +1,8 @@
 package com.bankaccount.domain;
 
+import com.bankaccount.domain.operations.CreationOperation;
+import com.bankaccount.domain.operations.DepositOperation;
+import com.bankaccount.domain.operations.WithdrawOperation;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
