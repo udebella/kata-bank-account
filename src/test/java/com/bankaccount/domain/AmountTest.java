@@ -12,7 +12,7 @@ public class AmountTest {
     }
 
     @Test
-    public void should_allow_to_add_amounts() {
+    public void should_provide_a_way_to_add_amounts() {
         final Amount amount = Amount.of(100);
 
         final Amount addition = amount.add(Amount.of(50));
@@ -22,7 +22,7 @@ public class AmountTest {
     }
 
     @Test
-    public void should_convert_amount_to_negative_value() {
+    public void should_provide_a_way_to_negate_amounts() {
         final Amount amount = Amount.of(100);
 
         assertThat(amount.negative())
