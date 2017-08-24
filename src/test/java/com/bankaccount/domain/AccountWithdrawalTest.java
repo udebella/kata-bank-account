@@ -1,8 +1,8 @@
 package com.bankaccount.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDateTime;
 
 public class AccountWithdrawalTest {
@@ -12,6 +12,6 @@ public class AccountWithdrawalTest {
 
         account.withdraw(Amount.of(10), LocalDateTime.now());
 
-        Assertions.assertThat(account.accountBalance()).isEqualTo(Amount.of(90));
+        assertThat(account.accountBalance()).isEqualTo(Amount.of(90));
     }
 }
