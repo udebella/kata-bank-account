@@ -13,6 +13,6 @@ public class WithdrawOperation extends Operation {
     }
 
     public static WithdrawOperation fromAmount(Amount amount) {
-        return new WithdrawOperation(amount);
+        return new WithdrawOperation(amount.negative());
     }
 }

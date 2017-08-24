@@ -27,7 +27,7 @@ public class Account {
     }
 
     public void withdraw(Amount amount) {
-        operations.add(WithdrawOperation.fromAmount(amount.negative()));
+        operations.add(WithdrawOperation.fromAmount(amount));
     }
 
     public List<Operation> consult() {
