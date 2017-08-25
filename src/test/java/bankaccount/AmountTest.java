@@ -17,7 +17,7 @@ public class AmountTest {
     }
 
     @Test
-    public void amount_can_be_added() {
+    public void adding_zero_to_zero_should_produce_zero() {
         assertThat(Amount.ZERO.add(Amount.ZERO)).isEqualTo(Amount.ZERO);
     }
 }
