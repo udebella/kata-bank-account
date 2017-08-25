@@ -3,11 +3,11 @@ package bankaccount;
 import java.time.LocalDate;
 
 public class Account {
-    public void deposit(int amount, LocalDate operationDate) {
+    public void deposit(Amount amount, LocalDate operationDate) {
         throw new UnsupportedOperationException();
     }
 
-    public void withdraw(int amount, LocalDate operationDate) {
+    public void withdraw(Amount amount, LocalDate operationDate) {
         throw new UnsupportedOperationException();
     }
 

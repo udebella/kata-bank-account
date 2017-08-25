@@ -19,9 +19,9 @@ public class BankAccountFeature {
     public void deposit_and_withdrawal_on_accounts() {
         Account account = new Account();
 
-        account.deposit(10, LocalDate.of(2017, Month.AUGUST, 25));
-        account.withdraw(5, LocalDate.of(2017, Month.AUGUST, 26));
-        account.deposit(50, LocalDate.of(2017, Month.AUGUST, 30));
+        account.deposit(Amount.of(10), LocalDate.of(2017, Month.AUGUST, 25));
+        account.withdraw(Amount.of(5), LocalDate.of(2017, Month.AUGUST, 26));
+        account.deposit(Amount.of(50), LocalDate.of(2017, Month.AUGUST, 30));
 
         account.history(printer);
 
