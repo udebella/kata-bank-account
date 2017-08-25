@@ -3,10 +3,10 @@ package bankaccount;
 import java.time.LocalDate;
 
 public class Account {
-    private boolean deposit = false;
+    private int counter = 0;
 
     public void deposit(Amount amount, LocalDate operationDate) {
-        deposit = true;
+        counter++;
     }
 
     public void withdraw(Amount amount, LocalDate operationDate) {
@@ -18,9 +18,6 @@ public class Account {
     }
 
     public Amount balance() {
-        if (deposit) {
-            return Amount.of(10);
-        }
-        return Amount.of(0);
+        return Amount.of(10*counter);
     }
 }
