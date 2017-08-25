@@ -42,4 +42,11 @@ public class AccountTest {
 
         assertThat(account.balance()).isEqualTo(Amount.of(25));
     }
+
+    @Test
+    public void withdraw_should_update_account_balance() {
+        account.withdraw(Amount.ZERO, LocalDate.now());
+
+        assertThat(account.balance()).isEqualTo(Amount.ZERO);
+    }
 }

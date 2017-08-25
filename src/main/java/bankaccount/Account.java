@@ -10,7 +10,6 @@ public class Account {
     }
 
     public void withdraw(Amount amount, LocalDate operationDate) {
-        throw new UnsupportedOperationException();
     }
 
     public void history(Printer printer) {
