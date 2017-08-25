@@ -21,6 +21,10 @@ public class Amount {
         return new Amount(amount);
     }
 
+    public Amount add(Amount amountToAdd) {
+        return Amount.of(amountToAdd.value + value);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,9 +38,5 @@ public class Amount {
     @Override
     public int hashCode() {
         return value;
-    }
-
-    public Amount add(Amount amountToAdd) {
-        return Amount.of(amountToAdd.value + value);
     }
 }
