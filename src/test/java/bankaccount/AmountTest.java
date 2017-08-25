@@ -25,4 +25,9 @@ public class AmountTest {
     public void adding_some_amount_to_zero_should_produce_initial_amount() {
         assertThat(Amount.ZERO.add(Amount.of(10))).isEqualTo(Amount.of(10));
     }
+
+    @Test
+    public void add_two_different_amounts_should_produce_sum() {
+        assertThat(Amount.of(20).add(Amount.of(10))).isEqualTo(Amount.of(30));
+    }
 }

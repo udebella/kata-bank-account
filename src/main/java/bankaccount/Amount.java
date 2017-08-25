@@ -37,6 +37,6 @@ public class Amount {
     }
 
     public Amount add(Amount amountToAdd) {
-        return amountToAdd;
+        return Amount.of(amountToAdd.value + value);
     }
 }
