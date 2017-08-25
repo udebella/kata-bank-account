@@ -14,4 +14,8 @@ public class Account {
     public void history(Printer printer) {
         throw new UnsupportedOperationException();
     }
+
+    public Amount balance() {
+        return Amount.of(0);
+    }
 }
