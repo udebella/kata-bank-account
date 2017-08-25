@@ -1,6 +1,7 @@
 package bankaccount;
 
 public class Amount {
+    public static final Amount ZERO = Amount.of(0);
     private final int value;
 
     private Amount(int value) {
@@ -36,6 +37,6 @@ public class Amount {
     }
 
     public Amount add(Amount amountToAdd) {
-        return Amount.of(0);
+        return Amount.ZERO;
     }
 }

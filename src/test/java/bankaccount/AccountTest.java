@@ -17,7 +17,7 @@ public class AccountTest {
 
     @Test
     public void balance_should_be_zero_by_default() {
-        assertThat(account.balance()).isEqualTo(Amount.of(0));
+        assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
 
     @Test
