@@ -20,4 +20,9 @@ public class AmountTest {
     public void adding_zero_to_zero_should_produce_zero() {
         assertThat(Amount.ZERO.add(Amount.ZERO)).isEqualTo(Amount.ZERO);
     }
+
+    @Test
+    public void adding_some_amount_to_zero_should_produce_initial_amount() {
+        assertThat(Amount.ZERO.add(Amount.of(10))).isEqualTo(Amount.of(10));
+    }
 }
