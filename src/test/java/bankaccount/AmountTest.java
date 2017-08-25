@@ -15,4 +15,9 @@ public class AmountTest {
     public void amount_should_not_be_negative() {
         Amount.of(-10);
     }
+
+    @Test
+    public void amount_can_be_added() {
+        assertThat(Amount.of(0).add(Amount.of(0))).isEqualTo(Amount.of(0));
+    }
 }

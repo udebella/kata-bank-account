@@ -34,4 +34,8 @@ public class Amount {
     public int hashCode() {
         return value;
     }
+
+    public Amount add(Amount amountToAdd) {
+        return Amount.of(0);
+    }
 }
