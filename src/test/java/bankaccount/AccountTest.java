@@ -34,4 +34,12 @@ public class AccountTest {
 
         assertThat(account.balance()).isEqualTo(Amount.of(20));
     }
+
+    @Test
+    public void multiple_deposit_of_different_amount_should_update_balance() {
+        account.deposit(Amount.of(10), LocalDate.now());
+        account.deposit(Amount.of(15), LocalDate.now());
+
+        assertThat(account.balance()).isEqualTo(Amount.of(25));
+    }
 }
