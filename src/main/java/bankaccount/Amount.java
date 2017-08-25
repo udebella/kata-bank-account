@@ -7,7 +7,16 @@ public class Amount {
         this.value = value;
     }
 
+    /**
+     * Build an amount
+     * @param amount in cents
+     *
+     * @throws IllegalArgumentException if negative value is provided
+     */
     public static Amount of(int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative");
+        }
         return new Amount(amount);
     }
 
