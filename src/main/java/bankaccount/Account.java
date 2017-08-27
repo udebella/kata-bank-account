@@ -19,7 +19,17 @@ public class Account {
         balance = balance.add(amount);
     }
 
+    /**
+     * Allow to withdraw an amount on the account
+     * @param amount to withdraw
+     * @param operationDate date of the operation
+     *
+     * @throws IllegalArgumentException if amount is negative
+     */
     public void withdraw(Amount amount, LocalDate operationDate) {
+        if (amount.isNegative()) {
+            throw new IllegalArgumentException("Negative amounts are not allowed");
+        }
     }
 
     public void history(Printer printer) {

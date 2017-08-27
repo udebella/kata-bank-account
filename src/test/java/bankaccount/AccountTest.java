@@ -54,4 +54,9 @@ public class AccountTest {
 
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void withdraw_should_not_allow_negative_amounts() {
+        account.withdraw(Amount.of(-10), LocalDate.now());
+    }
 }
