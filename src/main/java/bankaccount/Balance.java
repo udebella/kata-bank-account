@@ -31,4 +31,8 @@ public class Balance {
         result = 31 * result + (isPositive ? 1 : 0);
         return result;
     }
+
+    public Balance add(Amount zero) {
+        return this;
+    }
 }
