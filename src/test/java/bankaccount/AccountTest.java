@@ -20,6 +20,11 @@ public class AccountTest {
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void deposit_should_not_allow_negative_amounts() {
+        account.deposit(Amount.of(-10), LocalDate.now());
+    }
+
     @Test
     public void deposit_should_update_account_balance() {
         account.deposit(Amount.of(10), LocalDate.now());

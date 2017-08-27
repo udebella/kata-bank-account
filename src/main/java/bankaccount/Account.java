@@ -5,7 +5,17 @@ import java.time.LocalDate;
 public class Account {
     private Amount balance = Amount.ZERO;
 
+    /**
+     * Allow to deposit an amount on the account
+     * @param amount to deposit
+     * @param operationDate date of the operation
+     *
+     * @throws IllegalArgumentException if amount is negative
+     */
     public void deposit(Amount amount, LocalDate operationDate) {
+        if (amount.isNegative()) {
+            throw new IllegalArgumentException("Negative amounts are not allowed");
+        }
         balance = balance.add(amount);
     }
 
