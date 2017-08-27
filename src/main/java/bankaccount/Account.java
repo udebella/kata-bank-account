@@ -30,7 +30,7 @@ public class Account {
         if (amount.isNegative()) {
             throw new IllegalArgumentException("Negative amounts are not allowed");
         }
-        balance = amount.negative();
+        balance = balance.add(amount.negative());
     }
 
     public void history(Printer printer) {

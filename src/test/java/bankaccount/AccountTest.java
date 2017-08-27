@@ -66,4 +66,12 @@ public class AccountTest {
 
         assertThat(account.balance()).isEqualTo(Amount.of(-50));
     }
+
+    @Test
+    public void multiple_withdraw_should_update_account_balance() {
+        account.withdraw(Amount.of(50), LocalDate.now());
+        account.withdraw(Amount.of(50), LocalDate.now());
+
+        assertThat(account.balance()).isEqualTo(Amount.of(-100));
+    }
 }
