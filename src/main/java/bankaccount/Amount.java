@@ -24,6 +24,10 @@ public class Amount {
         return value < 0;
     }
 
+    public String print() {
+        return "0";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

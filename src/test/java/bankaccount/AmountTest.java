@@ -42,4 +42,9 @@ public class AmountTest {
         assertThat(Amount.of(100).isNegative()).isFalse();
         assertThat(Amount.of(-100).isNegative()).isTrue();
     }
+
+    @Test
+    public void amounts_should_be_printable() {
+        assertThat(Amount.ZERO.print()).isEqualTo("0");
+    }
 }
