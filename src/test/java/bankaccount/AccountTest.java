@@ -10,10 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountTest {
     private Account account;
+    private Printer printer;
 
     @Before
     public void setUp() throws Exception {
         account = new Account();
+        printer = Mockito.mock(Printer.class);
     }
 
     @Test
@@ -78,8 +80,6 @@ public class AccountTest {
 
     @Test
     public void history_should_print_a_description_line() {
-        Printer printer = Mockito.mock(Printer.class);
-
         account.history(printer);
 
         Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
