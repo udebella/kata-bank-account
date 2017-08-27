@@ -16,9 +16,7 @@ public class Account {
      * @throws IllegalArgumentException if amount is negative
      */
     public void deposit(Amount amount, LocalDate operationDate) {
-        if (amount.isNegative()) {
-            throw new IllegalArgumentException("Negative amounts are not allowed");
-        }
+        verifyPositiveAmount(amount);
         history.add(HistoryLine.of(OperationType.DEPOSIT, amount, operationDate, balance().add(amount)));
         balance = balance.add(amount);
     }
@@ -31,10 +29,14 @@ public class Account {
      * @throws IllegalArgumentException if amount is negative
      */
     public void withdraw(Amount amount, LocalDate operationDate) {
+        verifyPositiveAmount(amount);
+        balance = balance.add(amount.negative());
+    }
+
+    private void verifyPositiveAmount(Amount amount) {
         if (amount.isNegative()) {
             throw new IllegalArgumentException("Negative amounts are not allowed");
         }
-        balance = balance.add(amount.negative());
     }
 
     public void history(Printer printer) {
