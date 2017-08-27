@@ -1,5 +1,5 @@
 package bankaccount;
 
 public enum OperationType {
-    DEPOSIT;
+    DEPOSIT, WITHDRAW;
 }

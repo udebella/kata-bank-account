@@ -30,6 +30,7 @@ public class Account {
      */
     public void withdraw(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
+        history.add(HistoryLine.of(OperationType.WITHDRAW, amount, operationDate, balance().add(amount.negative())));
         balance = balance.add(amount.negative());
     }
 

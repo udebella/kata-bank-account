@@ -93,4 +93,12 @@ public class AccountTest {
 
         Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€");
     }
+
+    @Test
+    public void history_should_keep_track_of_withdrawals() {
+        account.withdraw(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27));
+        account.history(printer);
+
+        Mockito.verify(printer).print("WITHDRAW | 27/08/2017 | +10€ | -10€");
+    }
 }
