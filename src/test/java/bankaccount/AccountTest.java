@@ -49,7 +49,7 @@ public class AccountTest {
     }
 
     @Test
-    public void withdraw_should_update_account_balance() {
+    public void withdraw_nothing_should_not_update_balance() {
         account.withdraw(Amount.ZERO, LocalDate.now());
 
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
@@ -58,5 +58,12 @@ public class AccountTest {
     @Test(expected = IllegalArgumentException.class)
     public void withdraw_should_not_allow_negative_amounts() {
         account.withdraw(Amount.of(-10), LocalDate.now());
+    }
+
+    @Test
+    public void withdraw_should_update_account_balance() {
+        account.withdraw(Amount.of(50), LocalDate.now());
+
+        assertThat(account.balance()).isEqualTo(Amount.of(-50));
     }
 }
