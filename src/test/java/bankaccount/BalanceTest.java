@@ -44,4 +44,11 @@ public class BalanceTest {
 
         assertThat(finalBalance).isEqualTo(Balance.of(Amount.of(30), true));
     }
+
+    @Test
+    public void adding_zero_amount_to_a_negative_balance_should_not_make_it_positive() {
+        final Balance negativeBalance = Balance.of(Amount.of(100), false);
+
+        assertThat(negativeBalance.add(Amount.ZERO)).isEqualTo(negativeBalance);
+    }
 }
