@@ -1,5 +1,9 @@
 package bankaccount;
 
+import bankaccount.history.DepositLine;
+import bankaccount.history.HistoryLine;
+import bankaccount.history.WithdrawLine;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +20,7 @@ public class Account {
      */
     public void deposit(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
-        history.add(HistoryLine.of(OperationType.DEPOSIT, amount, operationDate, balance().add(amount)));
+        history.add(DepositLine.of(OperationType.DEPOSIT, amount, operationDate, balance().add(amount)));
     }
 
     /**
@@ -28,7 +32,7 @@ public class Account {
      */
     public void withdraw(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
-        history.add(HistoryLine.of(OperationType.WITHDRAW, amount, operationDate, balance().add(amount.negative())));
+        history.add(WithdrawLine.of(OperationType.WITHDRAW, amount, operationDate, balance().add(amount.negative())));
     }
 
     private void verifyPositiveAmount(Amount amount) {
@@ -44,7 +48,6 @@ public class Account {
 
     public Amount balance() {
         return history.stream()
-                .map(HistoryLine::getAmount)
-                .reduce(Amount.ZERO, Amount::add);
+                .reduce(Amount.ZERO, (amount, line) -> line.combineAmounts(amount), Amount::add);
     }
 }

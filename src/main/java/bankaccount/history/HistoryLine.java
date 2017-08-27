@@ -1,27 +1,27 @@
-package bankaccount;
+package bankaccount.history;
+
+import bankaccount.Amount;
+import bankaccount.OperationType;
+import bankaccount.Printer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class HistoryLine {
+public abstract class HistoryLine {
     private static final String SEPARATOR = " | ";
     private static final String CURRENCY = "€";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
-    private final OperationType operationType;
-    private final Amount amount;
-    private final LocalDate date;
-    private final Amount currentBalance;
+    protected final OperationType operationType;
+    protected final Amount amount;
+    protected final LocalDate date;
+    protected final Amount currentBalance;
 
-    private HistoryLine(OperationType operationType, Amount amount, LocalDate date, Amount currentBalance) {
+    protected HistoryLine(OperationType operationType, Amount amount, LocalDate date, Amount currentBalance) {
         this.operationType = operationType;
         this.amount = amount;
         this.date = date;
         this.currentBalance = currentBalance;
-    }
-
-    public static HistoryLine of(OperationType deposit, Amount amount, LocalDate operationDate, Amount balance) {
-        return new HistoryLine(deposit, amount, operationDate, balance);
     }
 
     public void print(Printer printer) {
@@ -33,10 +33,5 @@ public class HistoryLine {
         printer.print(lineRepresentation);
     }
 
-    public Amount getAmount() {
-        if (operationType == OperationType.WITHDRAW) {
-            return amount.negative();
-        }
-        return amount;
-    }
+    public abstract Amount combineAmounts(Amount amount);
 }
