@@ -1,18 +1,20 @@
 package bankaccount;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class HistoryLine {
-    private final OperationType deposit;
+    private static final String SEPARATOR = " | ";
+    private static final String CURRENCY = "€";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+
+    private final OperationType operationType;
     private final Amount amount;
     private final LocalDate date;
     private final Amount currentBalance;
 
-    private HistoryLine(OperationType deposit, Amount amount, LocalDate date, Amount currentBalance) {
-        this.deposit = deposit;
+    private HistoryLine(OperationType operationType, Amount amount, LocalDate date, Amount currentBalance) {
+        this.operationType = operationType;
         this.amount = amount;
         this.date = date;
         this.currentBalance = currentBalance;
@@ -23,8 +25,10 @@ public class HistoryLine {
     }
 
     public void print(Printer printer) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-        String lineRepresentation = deposit.toString() + " | " + dateFormat.format(date) + " | " + amount.print() + "€ | " + currentBalance.print() + "€";
+        String lineRepresentation = operationType.toString()
+                + SEPARATOR + FORMATTER.format(date)
+                + SEPARATOR + amount.print() + CURRENCY
+                + SEPARATOR + currentBalance.print() + CURRENCY;
 
         printer.print(lineRepresentation);
     }
