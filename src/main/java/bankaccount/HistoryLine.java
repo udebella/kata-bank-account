@@ -32,4 +32,11 @@ public class HistoryLine {
 
         printer.print(lineRepresentation);
     }
+
+    public Amount getAmount() {
+        if (operationType == OperationType.WITHDRAW) {
+            return amount.negative();
+        }
+        return amount;
+    }
 }

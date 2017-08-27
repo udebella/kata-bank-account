@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private Amount balance = Amount.ZERO;
     private final List<HistoryLine> history = new ArrayList<>();
 
     /**
@@ -18,7 +17,6 @@ public class Account {
     public void deposit(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
         history.add(HistoryLine.of(OperationType.DEPOSIT, amount, operationDate, balance().add(amount)));
-        balance = balance.add(amount);
     }
 
     /**
@@ -31,7 +29,6 @@ public class Account {
     public void withdraw(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
         history.add(HistoryLine.of(OperationType.WITHDRAW, amount, operationDate, balance().add(amount.negative())));
-        balance = balance.add(amount.negative());
     }
 
     private void verifyPositiveAmount(Amount amount) {
@@ -46,13 +43,8 @@ public class Account {
     }
 
     public Amount balance() {
-        return balance;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "balance=" + balance +
-                '}';
+        return history.stream()
+                .map(HistoryLine::getAmount)
+                .reduce(Amount.ZERO, Amount::add);
     }
 }
