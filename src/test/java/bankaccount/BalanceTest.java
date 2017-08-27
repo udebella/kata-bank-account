@@ -34,4 +34,14 @@ public class BalanceTest {
 
         assertThat(finalBalance).isEqualTo(Balance.of(amountToAdd, true));
     }
+
+    @Test
+    public void adding_twice_non_zero_amount_to_balance_should_update_balance() {
+        final Amount amountToAdd = Amount.of(15);
+
+        final Balance finalBalance = balance.add(amountToAdd)
+                .add(amountToAdd);
+
+        assertThat(finalBalance).isEqualTo(Balance.of(Amount.of(30), true));
+    }
 }
