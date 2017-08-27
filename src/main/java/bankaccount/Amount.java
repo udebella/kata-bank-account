@@ -15,14 +15,15 @@ public class Amount {
      * @throws IllegalArgumentException if negative value is provided
      */
     public static Amount of(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("Amount cannot be negative");
-        }
         return new Amount(amount);
     }
 
     public Amount add(Amount amountToAdd) {
         return Amount.of(amountToAdd.value + value);
+    }
+
+    public Amount negative() {
+        return Amount.of(-value);
     }
 
     @Override

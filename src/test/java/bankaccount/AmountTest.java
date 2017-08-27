@@ -31,4 +31,9 @@ public class AmountTest {
 
         assertThat(addAmount).isEqualTo(Amount.of(30));
     }
+
+    @Test
+    public void amounts_should_be_able_to_be_negated() {
+        assertThat(Amount.of(100).negative()).isEqualTo(Amount.of(-100));
+    }
 }
