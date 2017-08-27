@@ -20,7 +20,7 @@ public class Account {
      */
     public void deposit(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
-        history.add(DepositLine.of(OperationType.DEPOSIT, amount, operationDate, balance().add(amount)));
+        history.add(DepositLine.of(amount, operationDate, balance().add(amount)));
     }
 
     /**
@@ -32,7 +32,7 @@ public class Account {
      */
     public void withdraw(Amount amount, LocalDate operationDate) {
         verifyPositiveAmount(amount);
-        history.add(WithdrawLine.of(OperationType.WITHDRAW, amount, operationDate, balance().add(amount.negative())));
+        history.add(WithdrawLine.of(amount, operationDate, balance().add(amount.negative())));
     }
 
     private void verifyPositiveAmount(Amount amount) {

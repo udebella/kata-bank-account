@@ -1,17 +1,21 @@
 package bankaccount.history;
 
 import bankaccount.Amount;
-import bankaccount.OperationType;
 
 import java.time.LocalDate;
 
 public class DepositLine extends HistoryLine {
-    private DepositLine(OperationType operationType, Amount amount, LocalDate date, Amount currentBalance) {
-        super(operationType, amount, date, currentBalance);
+    private DepositLine(Amount amount, LocalDate date, Amount currentBalance) {
+        super(amount, date, currentBalance);
     }
 
-    public static HistoryLine of(OperationType deposit, Amount amount, LocalDate operationDate, Amount balance) {
-        return new DepositLine(deposit, amount, operationDate, balance);
+    public static HistoryLine of(Amount amount, LocalDate operationDate, Amount balance) {
+        return new DepositLine(amount, operationDate, balance);
+    }
+
+    @Override
+    protected String printOperationType() {
+        return "DEPOSIT";
     }
 
     public Amount combineAmounts(Amount amount) {
