@@ -11,11 +11,6 @@ public class AmountTest {
         assertThat(Amount.ZERO).isNotEqualTo(Amount.of(10));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void amount_should_not_be_negative() {
-        Amount.of(-10);
-    }
-
     @Test
     public void adding_zero_to_zero_should_produce_zero() {
         final Amount addAmount = Amount.ZERO.add(Amount.ZERO);
