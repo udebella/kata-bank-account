@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -83,5 +84,14 @@ public class AccountTest {
         account.history(printer);
 
         Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
+    }
+
+    @Test
+    public void history_should_keep_track_of_deposits() {
+        account.deposit(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27));
+        account.history(printer);
+
+        Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
+        Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€");
     }
 }
