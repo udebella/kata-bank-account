@@ -25,4 +25,13 @@ public class BalanceTest {
 
         assertThat(finalBalance).isEqualTo(balance);
     }
+
+    @Test
+    public void adding_non_zero_amount_to_balance_should_update_balance() {
+        final Amount amountToAdd = Amount.of(15);
+
+        final Balance finalBalance = balance.add(amountToAdd);
+
+        assertThat(finalBalance).isEqualTo(Balance.of(amountToAdd, true));
+    }
 }

@@ -33,6 +33,9 @@ public class Balance {
     }
 
     public Balance add(Amount zero) {
+        if (zero != Amount.ZERO) {
+            return of(zero, isPositive);
+        }
         return this;
     }
 }
