@@ -34,7 +34,7 @@ public class Account {
     }
 
     public void history(Printer printer) {
-        throw new UnsupportedOperationException();
+        printer.print("OPERATION | DATE | AMOUNT | BALANCE");
     }
 
     public Amount balance() {

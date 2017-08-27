@@ -2,6 +2,7 @@ package bankaccount;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.time.LocalDate;
 
@@ -73,5 +74,14 @@ public class AccountTest {
         account.withdraw(Amount.of(50), LocalDate.now());
 
         assertThat(account.balance()).isEqualTo(Amount.of(-100));
+    }
+
+    @Test
+    public void history_should_print_a_description_line() {
+        Printer printer = Mockito.mock(Printer.class);
+
+        account.history(printer);
+
+        Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
     }
 }
