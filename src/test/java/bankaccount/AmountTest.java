@@ -40,5 +40,6 @@ public class AmountTest {
     @Test
     public void amounts_should_let_us_know_if_they_are_positive_or_negative() {
         assertThat(Amount.of(100).isNegative()).isFalse();
+        assertThat(Amount.of(-100).isNegative()).isTrue();
     }
 }

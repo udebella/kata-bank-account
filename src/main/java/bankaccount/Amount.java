@@ -27,7 +27,7 @@ public class Amount {
     }
 
     public boolean isNegative() {
-        return false;
+        return value < 0;
     }
 
     @Override
