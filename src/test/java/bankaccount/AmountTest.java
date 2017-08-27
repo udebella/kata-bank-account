@@ -47,4 +47,9 @@ public class AmountTest {
     public void amounts_should_be_printable() {
         assertThat(Amount.ZERO.print()).isEqualTo("0");
     }
+
+    @Test
+    public void positive_amounts_should_not_print_as_cents() {
+        assertThat(Amount.of(100).print()).isEqualTo("+1");
+    }
 }

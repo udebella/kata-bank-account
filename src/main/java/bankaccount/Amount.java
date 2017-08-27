@@ -25,7 +25,12 @@ public class Amount {
     }
 
     public String print() {
-        return "0";
+        StringBuilder result = new StringBuilder();
+        if (value != 0) {
+            result.append("+");
+        }
+        result.append(value / 100);
+        return result.toString();
     }
 
     @Override
