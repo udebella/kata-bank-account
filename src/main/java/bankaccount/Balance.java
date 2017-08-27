@@ -32,9 +32,9 @@ public class Balance {
         return result;
     }
 
-    public Balance add(Amount zero) {
-        if (zero != Amount.ZERO) {
-            return of(zero, isPositive);
+    public Balance add(Amount amountToAdd) {
+        if (amountToAdd != Amount.ZERO) {
+            return of(amountToAdd, isPositive);
         }
         return this;
     }
