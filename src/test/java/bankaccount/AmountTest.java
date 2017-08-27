@@ -52,4 +52,9 @@ public class AmountTest {
     public void positive_amounts_should_not_print_as_cents() {
         assertThat(Amount.of(100).print()).isEqualTo("+1");
     }
+
+    @Test
+    public void negative_amounts_should_print_a_minus_symbol() {
+        assertThat(Amount.of(-100).print()).isEqualTo("-1");
+    }
 }

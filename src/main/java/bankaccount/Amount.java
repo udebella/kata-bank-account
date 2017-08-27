@@ -26,7 +26,7 @@ public class Amount {
 
     public String print() {
         StringBuilder result = new StringBuilder();
-        if (value != 0) {
+        if (value > 0) {
             result.append("+");
         }
         result.append(value / 100);
