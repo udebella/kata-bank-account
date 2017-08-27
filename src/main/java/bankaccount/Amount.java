@@ -1,5 +1,7 @@
 package bankaccount;
 
+import java.text.DecimalFormat;
+
 public class Amount {
     public static final Amount ZERO = Amount.of(0);
     private final int value;
@@ -25,11 +27,12 @@ public class Amount {
     }
 
     public String print() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
         StringBuilder result = new StringBuilder();
         if (value > 0) {
             result.append("+");
         }
-        result.append(value / 100);
+        result.append(decimalFormat.format(value / 100d));
         return result.toString();
     }
 

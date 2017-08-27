@@ -57,4 +57,9 @@ public class AmountTest {
     public void negative_amounts_should_print_a_minus_symbol() {
         assertThat(Amount.of(-100).print()).isEqualTo("-1");
     }
+
+    @Test
+    public void cents_should_be_printed() {
+        assertThat(Amount.of(53).print()).isEqualTo("+0,53");
+    }
 }
