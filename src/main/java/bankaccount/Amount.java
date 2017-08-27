@@ -38,4 +38,11 @@ public class Amount {
     public int hashCode() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "Amount{" +
+                "value=" + value +
+                '}';
+    }
 }
