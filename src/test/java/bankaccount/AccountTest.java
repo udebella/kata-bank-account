@@ -91,7 +91,6 @@ public class AccountTest {
         account.deposit(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27));
         account.history(printer);
 
-        Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
         Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€");
     }
 }
