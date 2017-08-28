@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 public class Amount {
     public static final Amount ZERO = Amount.of(0);
+    private static final String CURRENCY = "€";
     private final int value;
 
     private Amount(int value) {
@@ -33,6 +34,7 @@ public class Amount {
             result.append("+");
         }
         result.append(decimalFormat.format(value / 100d));
+        result.append(CURRENCY);
         return result.toString();
     }
 

@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class HistoryLine {
     private static final String SEPARATOR = " | ";
-    private static final String CURRENCY = "€";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/YYYY");
 
     protected final Amount amount;
@@ -24,8 +23,8 @@ public abstract class HistoryLine {
     public void print(Printer printer) {
         String lineRepresentation = printOperationType()
                 + SEPARATOR + FORMATTER.format(date)
-                + SEPARATOR + amount.print() + CURRENCY
-                + SEPARATOR + currentBalance.print() + CURRENCY;
+                + SEPARATOR + amount.print()
+                + SEPARATOR + currentBalance.print();
 
         printer.print(lineRepresentation);
     }
