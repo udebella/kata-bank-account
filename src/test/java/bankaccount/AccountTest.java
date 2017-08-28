@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AccountTest {
     private Account account;
     private Printer printer;
+    private DateService dateService;
 
     @Before
-    public void setUp() throws Exception {
-        account = new Account();
+    public void setUp() {
+        dateService = Mockito.mock(DateService.class);
+        account = new Account(dateService);
         printer = Mockito.mock(Printer.class);
     }
 
@@ -26,55 +28,55 @@ public class AccountTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void deposit_should_not_allow_negative_amounts() {
-        account.deposit(Amount.of(-10), LocalDate.now());
+        account.deposit(Amount.of(-10));
     }
 
     @Test
     public void deposit_should_update_account_balance() {
-        account.deposit(Amount.of(10), LocalDate.now());
+        account.deposit(Amount.of(10));
 
         assertThat(account.balance()).isEqualTo(Amount.of(10));
     }
 
     @Test
     public void multiple_deposit_should_update_account_balance() {
-        account.deposit(Amount.of(10), LocalDate.now());
-        account.deposit(Amount.of(10), LocalDate.now());
+        account.deposit(Amount.of(10));
+        account.deposit(Amount.of(10));
 
         assertThat(account.balance()).isEqualTo(Amount.of(20));
     }
 
     @Test
     public void multiple_deposit_of_different_amount_should_update_balance() {
-        account.deposit(Amount.of(10), LocalDate.now());
-        account.deposit(Amount.of(15), LocalDate.now());
+        account.deposit(Amount.of(10));
+        account.deposit(Amount.of(15));
 
         assertThat(account.balance()).isEqualTo(Amount.of(25));
     }
 
     @Test
     public void withdraw_nothing_should_not_update_balance() {
-        account.withdraw(Amount.ZERO, LocalDate.now());
+        account.withdraw(Amount.ZERO);
 
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void withdraw_should_not_allow_negative_amounts() {
-        account.withdraw(Amount.of(-10), LocalDate.now());
+        account.withdraw(Amount.of(-10));
     }
 
     @Test
     public void withdraw_should_update_account_balance() {
-        account.withdraw(Amount.of(50), LocalDate.now());
+        account.withdraw(Amount.of(50));
 
         assertThat(account.balance()).isEqualTo(Amount.of(-50));
     }
 
     @Test
     public void multiple_withdraw_should_update_account_balance() {
-        account.withdraw(Amount.of(50), LocalDate.now());
-        account.withdraw(Amount.of(50), LocalDate.now());
+        account.withdraw(Amount.of(50));
+        account.withdraw(Amount.of(50));
 
         assertThat(account.balance()).isEqualTo(Amount.of(-100));
     }
@@ -88,7 +90,9 @@ public class AccountTest {
 
     @Test
     public void history_should_keep_track_of_deposits() {
-        account.deposit(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27));
+        Mockito.when(dateService.now())
+                .thenReturn(LocalDate.of(2017, Month.AUGUST, 27));
+        account.deposit(Amount.of(1000));
         account.history(printer);
 
         Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€");
@@ -96,7 +100,9 @@ public class AccountTest {
 
     @Test
     public void history_should_keep_track_of_withdrawals() {
-        account.withdraw(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27));
+        Mockito.when(dateService.now())
+                .thenReturn(LocalDate.of(2017, Month.AUGUST, 27));
+        account.withdraw(Amount.of(1000));
         account.history(printer);
 
         Mockito.verify(printer).print("WITHDRAW | 27/08/2017 | +10€ | -10€");

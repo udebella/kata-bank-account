@@ -4,35 +4,25 @@ import bankaccount.history.DepositLine;
 import bankaccount.history.HistoryLine;
 import bankaccount.history.WithdrawLine;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
     private final List<HistoryLine> history = new ArrayList<>();
+    private final DateService dateService;
 
-    /**
-     * Allow to deposit an amount on the account
-     * @param amount to deposit
-     * @param operationDate date of the operation
-     *
-     * @throws IllegalArgumentException if amount is negative
-     */
-    public void deposit(Amount amount, LocalDate operationDate) {
-        verifyPositiveAmount(amount);
-        history.add(DepositLine.of(amount, operationDate, balance().add(amount)));
+    public Account(DateService dateService) {
+        this.dateService = dateService;
     }
 
-    /**
-     * Allow to withdraw an amount on the account
-     * @param amount to withdraw
-     * @param operationDate date of the operation
-     *
-     * @throws IllegalArgumentException if amount is negative
-     */
-    public void withdraw(Amount amount, LocalDate operationDate) {
+    public void deposit(Amount amount) {
         verifyPositiveAmount(amount);
-        history.add(WithdrawLine.of(amount, operationDate, balance().add(amount.negative())));
+        history.add(DepositLine.of(amount, dateService.now(), balance().add(amount)));
+    }
+
+    public void withdraw(Amount amount) {
+        verifyPositiveAmount(amount);
+        history.add(WithdrawLine.of(amount, dateService.now(), balance().add(amount.negative())));
     }
 
     private void verifyPositiveAmount(Amount amount) {

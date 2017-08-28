@@ -9,19 +9,26 @@ import java.time.Month;
 
 public class BankAccountFeature {
     private Printer printer;
+    private DateService dateService;
 
     @Before
     public void setUp() {
         printer = Mockito.mock(Printer.class);
+        dateService = Mockito.mock(DateService.class);
     }
 
     @Test
     public void deposit_and_withdrawal_on_accounts() {
-        Account account = new Account();
+        Mockito.when(dateService.now())
+                .thenReturn(
+                        LocalDate.of(2017, Month.AUGUST, 25),
+                        LocalDate.of(2017, Month.AUGUST, 26),
+                        LocalDate.of(2017, Month.AUGUST, 30));
+        Account account = new Account(dateService);
 
-        account.deposit(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 25));
-        account.withdraw(Amount.of(500), LocalDate.of(2017, Month.AUGUST, 26));
-        account.deposit(Amount.of(5000), LocalDate.of(2017, Month.AUGUST, 30));
+        account.deposit(Amount.of(1000));
+        account.withdraw(Amount.of(500));
+        account.deposit(Amount.of(5000));
 
         account.history(printer);
 
