@@ -1,6 +1,8 @@
 package bankaccount;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class Amount {
     public static final Amount ZERO = Amount.of(0);
@@ -28,7 +30,7 @@ public class Amount {
     }
 
     public String print() {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", DecimalFormatSymbols.getInstance(Locale.FRANCE));
         StringBuilder result = new StringBuilder();
         if (value > 0) {
             result.append("+");
