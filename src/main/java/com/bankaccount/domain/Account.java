@@ -5,7 +5,7 @@ public class Account {
         return null;
     }
 
-    public void deposit(Amount amount) {
+    public void deposit(PositiveAmount amount) {
 
     }
 }
