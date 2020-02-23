@@ -33,4 +33,13 @@ class BalanceTest {
 
         assertThat(result).isEqualTo(Balance.of(5));
     }
+
+    @Test
+    void should_properly_add_when_balance_is_negative() {
+        final Balance balance = Balance.of(-5);
+
+        final Balance result = balance.add(PositiveAmount.of(10));
+
+        assertThat(result).isEqualTo(Balance.of(5));
+    }
 }

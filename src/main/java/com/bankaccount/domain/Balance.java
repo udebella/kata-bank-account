@@ -19,7 +19,7 @@ public final class Balance implements Amount {
 
     @Override
     public Balance add(PositiveAmount amount) {
-        return this.amount.add(amount);
+        return this.isPositive ? this.amount.add(amount) : amount.subtract(this.amount);
     }
 
     public Balance subtract(PositiveAmount amount) {
