@@ -12,4 +12,14 @@ public class AccountComponentTest {
 
         Assertions.assertThat(account.balance()).isEqualTo(new Balance(10));
     }
+
+    @Test
+    void should_allow_multiple_deposits() {
+        final Account account = new Account();
+
+        account.deposit(PositiveAmount.of(10));
+        account.deposit(PositiveAmount.of(20));
+
+        Assertions.assertThat(account.balance()).isEqualTo(new Balance(30));
+    }
 }
