@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Account {
-    private final List<Deposit> deposits;
+    private final List<Operation> deposits;
 
-    public Account(Deposit... deposits) {
+    public Account(Operation... deposits) {
         this.deposits = Stream.of(deposits).collect(Collectors.toList());
     }
 
@@ -25,6 +25,7 @@ public class Account {
     }
 
     public void withdraw(PositiveAmount amount) {
-
+        final Withdrawal withdrawal = new Withdrawal(amount, LocalDate.now());
+        this.deposits.add(withdrawal);
     }
 }
