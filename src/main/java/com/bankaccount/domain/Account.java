@@ -23,4 +23,8 @@ public class Account {
         final Deposit deposit = new Deposit(amount, LocalDate.now());
         this.deposits.add(deposit);
     }
+
+    public void withdraw(PositiveAmount amount) {
+
+    }
 }

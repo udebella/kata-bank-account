@@ -22,4 +22,13 @@ public class AccountComponentTest {
 
         Assertions.assertThat(account.balance()).isEqualTo(new Balance(30));
     }
+
+    @Test
+    void should_allow_withdrawal() {
+        final Account account = new Account();
+
+        account.withdraw(PositiveAmount.of(10));
+
+        Assertions.assertThat(account.balance()).isEqualTo(new Balance(-10));
+    }
 }
