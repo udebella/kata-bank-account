@@ -12,6 +12,10 @@ public final class Deposit {
         this.depositDate = depositDate;
     }
 
+    public Balance applyOn(Balance balance) {
+        return balance.add(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
