@@ -9,6 +9,10 @@ public final class Balance {
         this.balance = PositiveAmount.of(balance);
     }
 
+    public Balance add(PositiveAmount amount) {
+        return balance.add(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
