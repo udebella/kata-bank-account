@@ -39,7 +39,8 @@ public final class Balance implements Amount {
     @Override
     public String toString() {
         return "Balance{" +
-                "balance=" + amount +
+                "amount=" + amount +
+                ", isPositive=" + isPositive +
                 '}';
     }
 }
