@@ -19,4 +19,9 @@ class BalanceTest {
 
         assertThat(result).isEqualTo(new Balance(5));
     }
+
+    @Test
+    void should_allow_to_create_negative_balances() {
+        new Balance(-5);
+    }
 }

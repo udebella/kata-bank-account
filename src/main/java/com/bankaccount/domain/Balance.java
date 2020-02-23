@@ -4,9 +4,16 @@ import java.util.Objects;
 
 public final class Balance implements Amount {
     private final PositiveAmount amount;
+    private final boolean isPositive;
 
     public Balance(long amount) {
-        this.amount = PositiveAmount.of(amount);
+        if (amount < 0) {
+            this.amount = PositiveAmount.of(-amount);
+            this.isPositive = false;
+        } else {
+            this.amount = PositiveAmount.of(amount);
+            this.isPositive = true;
+        }
     }
 
     @Override
@@ -18,13 +25,14 @@ public final class Balance implements Amount {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Balance balance1 = (Balance) o;
-        return Objects.equals(amount, balance1.amount);
+        Balance balance = (Balance) o;
+        return isPositive == balance.isPositive &&
+                Objects.equals(amount, balance.amount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount);
+        return Objects.hash(amount, isPositive);
     }
 
     @Override
