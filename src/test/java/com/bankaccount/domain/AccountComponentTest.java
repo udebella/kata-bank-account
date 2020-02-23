@@ -8,7 +8,7 @@ public class AccountComponentTest {
     void should_allow_deposits() {
         final Account account = new Account();
 
-        account.deposit(Amount.of(10));
+        account.deposit(PositiveAmount.of(10));
 
         Assertions.assertThat(account.balance()).isEqualTo(new Balance(10));
     }
