@@ -1,5 +1,8 @@
 package com.bankaccount.domain;
 
+import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.operations.Deposit;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

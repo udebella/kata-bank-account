@@ -1,5 +1,7 @@
 package com.bankaccount.domain;
 
+import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.money.PositiveAmount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

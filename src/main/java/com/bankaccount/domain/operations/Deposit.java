@@ -1,4 +1,7 @@
-package com.bankaccount.domain;
+package com.bankaccount.domain.operations;
+
+import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.money.PositiveAmount;
 
 import java.time.LocalDate;
 import java.util.Objects;

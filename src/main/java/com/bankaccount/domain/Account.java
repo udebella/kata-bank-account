@@ -1,5 +1,11 @@
 package com.bankaccount.domain;
 
+import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.operations.Deposit;
+import com.bankaccount.domain.operations.Operation;
+import com.bankaccount.domain.operations.Withdrawal;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.BiFunction;

@@ -1,5 +1,7 @@
-package com.bankaccount.domain;
+package com.bankaccount.domain.money;
 
+import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.money.PositiveAmount;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

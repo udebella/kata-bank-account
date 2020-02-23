@@ -1,4 +1,4 @@
-package com.bankaccount.domain;
+package com.bankaccount.domain.money;
 
 import java.util.Objects;
 
