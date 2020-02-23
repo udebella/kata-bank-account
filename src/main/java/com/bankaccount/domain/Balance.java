@@ -17,13 +17,17 @@ public final class Balance implements Amount {
         return new Balance(positiveAmount, isPositive);
     }
 
+    private static Balance negative(Balance other) {
+        return new Balance(other.amount, false);
+    }
+
     @Override
     public Balance add(PositiveAmount amount) {
         return this.isPositive ? this.amount.add(amount) : amount.subtract(this.amount);
     }
 
     public Balance subtract(PositiveAmount amount) {
-        return this.isPositive ? this.amount.subtract(amount) : new Balance(this.amount.add(amount).amount, false);
+        return this.isPositive ? this.amount.subtract(amount) : Balance.negative(this.amount.add(amount));
     }
 
     @Override
