@@ -22,7 +22,7 @@ public final class PositiveAmount implements Amount {
     }
 
     public Balance subtract(PositiveAmount other) {
-        return Balance.of(amount);
+        return Balance.of(amount - other.amount);
     }
 
     @Override

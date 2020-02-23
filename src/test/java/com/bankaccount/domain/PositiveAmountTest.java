@@ -53,4 +53,14 @@ class PositiveAmountTest {
 
         assertThat(balance).isEqualTo(Balance.of(10));
     }
+
+    @Test
+    void should_allow_to_subtract_two_non_zero_amounts() {
+        final PositiveAmount amount = PositiveAmount.of(10);
+        final PositiveAmount amount2 = PositiveAmount.of(5);
+
+        final Balance balance = amount.subtract(amount2);
+
+        assertThat(balance).isEqualTo(Balance.of(5));
+    }
 }
