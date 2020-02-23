@@ -13,7 +13,7 @@ public final class Balance implements Amount {
 
     public static Balance of(long amount) {
         final boolean isPositive = amount > 0;
-        final PositiveAmount positiveAmount = PositiveAmount.of(isPositive ? amount : -amount);
+        final PositiveAmount positiveAmount = PositiveAmount.of(Math.abs(amount));
         return new Balance(positiveAmount, isPositive);
     }
 
