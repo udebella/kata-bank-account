@@ -21,6 +21,10 @@ public final class PositiveAmount implements Amount {
         return Balance.of(amount + other.amount);
     }
 
+    public Balance subtract(PositiveAmount other) {
+        return Balance.of(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

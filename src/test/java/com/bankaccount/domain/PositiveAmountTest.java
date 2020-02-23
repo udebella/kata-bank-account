@@ -26,7 +26,7 @@ class PositiveAmountTest {
 
     @Test
     void should_allow_to_add_to_zero_amount() {
-        final Amount amount = PositiveAmount.of(10);
+        final PositiveAmount amount = PositiveAmount.of(10);
         final PositiveAmount amount2 = PositiveAmount.of(0);
 
         final Balance balance = amount.add(amount2);
@@ -36,11 +36,21 @@ class PositiveAmountTest {
 
     @Test
     void should_allow_to_add_two_non_zero_amounts() {
-        final Amount amount = PositiveAmount.of(10);
+        final PositiveAmount amount = PositiveAmount.of(10);
         final PositiveAmount amount2 = PositiveAmount.of(5);
 
         final Balance balance = amount.add(amount2);
 
         assertThat(balance).isEqualTo(Balance.of(15));
+    }
+
+    @Test
+    void should_allow_to_subtract_to_zero_amount() {
+        final PositiveAmount amount = PositiveAmount.of(10);
+        final PositiveAmount amount2 = PositiveAmount.of(0);
+
+        final Balance balance = amount.subtract(amount2);
+
+        assertThat(balance).isEqualTo(Balance.of(10));
     }
 }
