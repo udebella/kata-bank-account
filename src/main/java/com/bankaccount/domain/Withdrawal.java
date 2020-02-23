@@ -3,7 +3,7 @@ package com.bankaccount.domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public final class Withdrawal {
+public final class Withdrawal implements Operation {
     private final PositiveAmount amount;
     private final LocalDate depositDate;
 
@@ -12,6 +12,7 @@ public final class Withdrawal {
         this.depositDate = depositDate;
     }
 
+    @Override
     public Balance applyOn(Balance balance) {
         return balance.subtract(amount);
     }
