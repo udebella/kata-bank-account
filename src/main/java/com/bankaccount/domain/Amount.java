@@ -9,6 +9,10 @@ public final class Amount {
         this.amount = amount;
     }
 
+    public static Amount of(long amount) {
+        throw new IllegalArgumentException("Amounts cannot be negative");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
