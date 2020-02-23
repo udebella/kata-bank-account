@@ -16,6 +16,10 @@ public final class Amount {
         return new Amount(amount);
     }
 
+    public Balance add(Amount other) {
+        return new Balance(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
