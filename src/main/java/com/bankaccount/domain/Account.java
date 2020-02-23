@@ -5,6 +5,7 @@ import com.bankaccount.domain.money.PositiveAmount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
+import com.bankaccount.domain.visitor.AccountVisitor;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -37,5 +38,8 @@ public class Account {
     private void applyOperation(BiFunction<PositiveAmount, LocalDate, Operation> operationConstructor, PositiveAmount amount) {
         final Operation operation = operationConstructor.apply(amount, LocalDate.now());
         this.deposits.add(operation);
+    }
+
+    public void accept(AccountVisitor visitor) {
     }
 }
