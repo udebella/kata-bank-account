@@ -42,4 +42,13 @@ class BalanceTest {
 
         assertThat(result).isEqualTo(Balance.of(5));
     }
+
+    @Test
+    void should_properly_subtract_when_balance_is_negative() {
+        final Balance balance = Balance.of(-5);
+
+        final Balance result = balance.subtract(PositiveAmount.of(10));
+
+        assertThat(result).isEqualTo(Balance.of(-15));
+    }
 }
