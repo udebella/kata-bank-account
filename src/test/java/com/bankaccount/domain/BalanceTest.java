@@ -13,7 +13,7 @@ class BalanceTest {
 
     @Test
     void should_allow_to_add_amounts_to_a_balance() {
-        final Balance balance = new Balance(0);
+        final Balance balance = Balance.of(0);
 
         final Balance result = balance.add(PositiveAmount.of(5));
 
