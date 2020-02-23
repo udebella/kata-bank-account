@@ -2,6 +2,7 @@ package com.bankaccount.domain;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,12 +21,15 @@ public class Account {
     }
 
     public void deposit(PositiveAmount amount) {
-        final Deposit deposit = new Deposit(amount, LocalDate.now());
-        this.deposits.add(deposit);
+        this.applyOperation(Deposit::new, amount);
     }
 
     public void withdraw(PositiveAmount amount) {
-        final Withdrawal withdrawal = new Withdrawal(amount, LocalDate.now());
-        this.deposits.add(withdrawal);
+        this.applyOperation(Withdrawal::new, amount);
+    }
+
+    private void applyOperation(BiFunction<PositiveAmount, LocalDate, Operation> operationConstructor, PositiveAmount amount) {
+        final Operation operation = operationConstructor.apply(amount, LocalDate.now());
+        this.deposits.add(operation);
     }
 }
