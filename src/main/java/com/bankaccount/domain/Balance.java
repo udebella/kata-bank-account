@@ -2,13 +2,14 @@ package com.bankaccount.domain;
 
 import java.util.Objects;
 
-public final class Balance {
+public final class Balance implements Amount {
     private final PositiveAmount amount;
 
     public Balance(long amount) {
         this.amount = PositiveAmount.of(amount);
     }
 
+    @Override
     public Balance add(PositiveAmount amount) {
         return this.amount.add(amount);
     }
