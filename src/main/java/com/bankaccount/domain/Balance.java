@@ -6,11 +6,6 @@ public final class Balance implements Amount {
     private final PositiveAmount amount;
     private final boolean isPositive;
 
-    public Balance(long amount) {
-        this.isPositive = amount > 0;
-        this.amount = PositiveAmount.of(this.isPositive ? amount : -amount);
-    }
-
     private Balance(PositiveAmount amount, boolean isPositive) {
         this.amount = amount;
         this.isPositive = isPositive;
