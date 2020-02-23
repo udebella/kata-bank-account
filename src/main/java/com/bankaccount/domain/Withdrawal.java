@@ -12,6 +12,10 @@ public final class Withdrawal {
         this.depositDate = depositDate;
     }
 
+    public Balance applyOn(Balance balance) {
+        return balance.subtract(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
