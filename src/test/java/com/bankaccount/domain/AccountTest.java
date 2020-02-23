@@ -13,7 +13,7 @@ public class AccountTest {
 
         final Balance balance = account.balance();
 
-        assertThat(balance).isEqualTo(new Balance(0));
+        assertThat(balance).isEqualTo(Balance.of(0));
     }
 
     @Test
@@ -22,7 +22,7 @@ public class AccountTest {
 
         final Balance balance = account.balance();
 
-        assertThat(balance).isEqualTo(new Balance(5));
+        assertThat(balance).isEqualTo(Balance.of(5));
     }
 
     @Test
@@ -33,6 +33,6 @@ public class AccountTest {
 
         final Balance balance = account.balance();
 
-        assertThat(balance).isEqualTo(new Balance(12));
+        assertThat(balance).isEqualTo(Balance.of(12));
     }
 }

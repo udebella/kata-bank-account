@@ -10,7 +10,7 @@ public class AccountComponentTest {
 
         account.deposit(PositiveAmount.of(10));
 
-        Assertions.assertThat(account.balance()).isEqualTo(new Balance(10));
+        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(10));
     }
 
     @Test
@@ -20,7 +20,7 @@ public class AccountComponentTest {
         account.deposit(PositiveAmount.of(10));
         account.deposit(PositiveAmount.of(20));
 
-        Assertions.assertThat(account.balance()).isEqualTo(new Balance(30));
+        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(30));
     }
 
     @Test
@@ -29,6 +29,6 @@ public class AccountComponentTest {
 
         account.withdraw(PositiveAmount.of(10));
 
-        Assertions.assertThat(account.balance()).isEqualTo(new Balance(-10));
+        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(-10));
     }
 }

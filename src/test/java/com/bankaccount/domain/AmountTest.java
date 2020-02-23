@@ -31,7 +31,7 @@ class AmountTest {
 
         final Balance balance = amount.add(amount2);
 
-        assertThat(balance).isEqualTo(new Balance(10));
+        assertThat(balance).isEqualTo(Balance.of(10));
     }
 
     @Test
@@ -41,6 +41,6 @@ class AmountTest {
 
         final Balance balance = amount.add(amount2);
 
-        assertThat(balance).isEqualTo(new Balance(15));
+        assertThat(balance).isEqualTo(Balance.of(15));
     }
 }

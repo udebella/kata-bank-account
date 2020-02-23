@@ -16,10 +16,10 @@ public class DepositTest {
     @Test
     void should_apply_deposit_on_balances() {
         final Deposit deposit = new Deposit(PositiveAmount.of(5), LocalDate.now());
-        final Balance balance = new Balance(10);
+        final Balance balance = Balance.of(10);
 
         final Balance result = deposit.applyOn(balance);
 
-        assertThat(result).isEqualTo(new Balance(15));
+        assertThat(result).isEqualTo(Balance.of(15));
     }
 }

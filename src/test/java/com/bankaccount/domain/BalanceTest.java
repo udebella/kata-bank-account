@@ -17,11 +17,11 @@ class BalanceTest {
 
         final Balance result = balance.add(PositiveAmount.of(5));
 
-        assertThat(result).isEqualTo(new Balance(5));
+        assertThat(result).isEqualTo(Balance.of(5));
     }
 
     @Test
     void should_allow_to_create_negative_balances() {
-        new Balance(-5);
+        Balance.of(-5);
     }
 }

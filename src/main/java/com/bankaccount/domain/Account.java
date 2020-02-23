@@ -14,7 +14,7 @@ public class Account {
 
     public Balance balance() {
         return deposits.stream()
-                .reduce(new Balance(0),
+                .reduce(Balance.of(0),
                         (balance, deposit) -> deposit.applyOn(balance),
                         (balance, balance2) -> {throw new RuntimeException("Need implementation");});
     }
