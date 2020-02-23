@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AmountTest {
+class PositiveAmountTest {
     @Test
     void should_verify_equality() {
         EqualsVerifier.forClass(PositiveAmount.class).verify();
