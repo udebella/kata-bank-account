@@ -7,13 +7,8 @@ public final class Balance implements Amount {
     private final boolean isPositive;
 
     public Balance(long amount) {
-        if (amount < 0) {
-            this.amount = PositiveAmount.of(-amount);
-            this.isPositive = false;
-        } else {
-            this.amount = PositiveAmount.of(amount);
-            this.isPositive = true;
-        }
+        this.isPositive = amount > 0;
+        this.amount = PositiveAmount.of(this.isPositive ? amount : -amount);
     }
 
     @Override
