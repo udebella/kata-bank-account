@@ -4,6 +4,8 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class AmountTest {
     @Test
     void should_verify_equality() {
@@ -15,5 +17,10 @@ class AmountTest {
         Assertions.assertThatThrownBy(() -> Amount.of(-10))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Amounts cannot be negative");
+    }
+
+    @Test
+    void should_allow_to_create_amounts() {
+        assertThat(Amount.of(1)).isEqualTo(Amount.of(1));
     }
 }
