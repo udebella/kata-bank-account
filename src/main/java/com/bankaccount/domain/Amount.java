@@ -17,7 +17,7 @@ public final class Amount {
     }
 
     public Balance add(Amount other) {
-        return new Balance(amount);
+        return new Balance(amount + other.amount);
     }
 
     @Override

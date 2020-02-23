@@ -33,4 +33,14 @@ class AmountTest {
 
         assertThat(balance).isEqualTo(new Balance(10));
     }
+
+    @Test
+    void should_allow_to_add_two_non_zero_amounts() {
+        final Amount amount = Amount.of(10);
+        final Amount amount2 = Amount.of(5);
+
+        final Balance balance = amount.add(amount2);
+
+        assertThat(balance).isEqualTo(new Balance(15));
+    }
 }
