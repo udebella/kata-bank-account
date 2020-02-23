@@ -24,4 +24,13 @@ class BalanceTest {
     void should_allow_to_create_negative_balances() {
         Balance.of(-5);
     }
+
+    @Test
+    void should_allow_to_subtract_amount() {
+        final Balance balance = Balance.of(10);
+
+        final Balance result = balance.subtract(PositiveAmount.of(5));
+
+        assertThat(result).isEqualTo(Balance.of(5));
+    }
 }
