@@ -24,4 +24,15 @@ public class AccountTest {
 
         assertThat(balance).isEqualTo(new Balance(5));
     }
+
+    @Test
+    void should_calculate_balance_for_account_with_multiple_deposits() {
+        final Account account = new Account(
+                new Deposit(PositiveAmount.of(5), LocalDate.now()),
+                new Deposit(PositiveAmount.of(7), LocalDate.now()));
+
+        final Balance balance = account.balance();
+
+        assertThat(balance).isEqualTo(new Balance(12));
+    }
 }

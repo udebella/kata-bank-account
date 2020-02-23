@@ -1,15 +1,13 @@
 package com.bankaccount.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Account {
-    private final List<Deposit> deposits = new ArrayList<>();
+    private final List<Deposit> deposits;
 
-    public Account() {}
-
-    public Account(Deposit deposit) {
-        this.deposits.add(deposit);
+    public Account(Deposit... deposits) {
+        this.deposits = Arrays.asList(deposits);
     }
 
     public Balance balance() {
