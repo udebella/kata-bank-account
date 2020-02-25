@@ -14,20 +14,23 @@ public class PrinterVisitor implements AccountVisitor {
         this.printer = printer;
     }
 
-    public void readOperation(String operationType, LocalDate operationDate) {
+    public void withOperationType(String operationType) {
         this.operationType = operationType;
+    }
+
+    public void withOperationDate(LocalDate operationDate) {
         this.operationDate = operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public void readAmount(long amount) {
+    public void withAmount(long amount) {
         this.amount = amount;
     }
 
-    public void readBalance(long balance) {
+    public void withBalance(long balance) {
         this.balance = balance;
     }
 
-    public void flush() {
+    public void build() {
         this.printer.print(String.format("%s | %s | %s | %s", this.operationType, this.operationDate, amount, balance));
     }
 }
