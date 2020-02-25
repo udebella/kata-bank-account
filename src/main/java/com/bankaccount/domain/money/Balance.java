@@ -3,6 +3,7 @@ package com.bankaccount.domain.money;
 import java.util.Objects;
 
 public final class Balance implements Amount {
+    public static final Balance INITIAL = of(0);
     private final PositiveAmount amount;
     private final boolean isPositive;
 

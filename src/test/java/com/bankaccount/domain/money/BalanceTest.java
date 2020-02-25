@@ -1,7 +1,5 @@
 package com.bankaccount.domain.money;
 
-import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +18,11 @@ class BalanceTest {
         final Balance result = balance.add(PositiveAmount.of(5));
 
         assertThat(result).isEqualTo(Balance.of(5));
+    }
+
+    @Test
+    void should_provide_an_empty_balance() {
+        assertThat(Balance.INITIAL).isEqualTo(Balance.of(0));
     }
 
     @Test

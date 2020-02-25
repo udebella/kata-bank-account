@@ -22,7 +22,7 @@ public class Account {
 
     public Balance balance() {
         return operations.stream()
-                .reduce(Balance.of(0),
+                .reduce(Balance.INITIAL,
                         (balance, operation) -> operation.applyOn(balance),
                         (balance, balance2) -> {throw new RuntimeException("Need implementation");});
     }
