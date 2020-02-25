@@ -8,11 +8,11 @@ import java.util.Objects;
 
 public final class Withdrawal implements Operation {
     private final PositiveAmount amount;
-    private final LocalDate depositDate;
+    private final LocalDate withdrawDate;
 
-    public Withdrawal(PositiveAmount amount, LocalDate depositDate) {
+    public Withdrawal(PositiveAmount amount, LocalDate withdrawDate) {
         this.amount = amount;
-        this.depositDate = depositDate;
+        this.withdrawDate = withdrawDate;
     }
 
     @Override
@@ -26,19 +26,19 @@ public final class Withdrawal implements Operation {
         if (o == null || getClass() != o.getClass()) return false;
         Withdrawal that = (Withdrawal) o;
         return Objects.equals(amount, that.amount) &&
-                Objects.equals(depositDate, that.depositDate);
+                Objects.equals(withdrawDate, that.withdrawDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(amount, depositDate);
+        return Objects.hash(amount, withdrawDate);
     }
 
     @Override
     public String toString() {
         return "Withdrawal{" +
                 "amount=" + amount +
-                ", depositDate=" + depositDate +
+                ", withdrawDate=" + withdrawDate +
                 '}';
     }
 }
