@@ -36,6 +36,8 @@ public class DepositTest {
 
         deposit.readOperation(operationReader);
 
-        verify(operationReader).readOperation("Deposit", amount, date);
+        verify(operationReader).readOperationType("Deposit");
+        verify(operationReader).readAmount(amount);
+        verify(operationReader).readOperationDate(date);
     }
 }

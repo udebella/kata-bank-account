@@ -22,7 +22,9 @@ public final class Deposit implements Operation {
 
     @Override
     public void readOperation(OperationReader operationReader) {
-        operationReader.readOperation("Deposit", amount, depositDate);
+        operationReader.readOperationType("Deposit");
+        operationReader .readAmount(amount);
+        operationReader.readOperationDate(depositDate);
     }
 
     @Override
