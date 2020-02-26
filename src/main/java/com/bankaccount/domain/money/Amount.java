@@ -3,7 +3,7 @@ package com.bankaccount.domain.money;
 import java.util.Objects;
 
 public final class Amount {
-    final long amount;
+    private final long amount;
 
     private Amount(long amount) {
         this.amount = amount;

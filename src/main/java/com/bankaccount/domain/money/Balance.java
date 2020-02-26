@@ -1,6 +1,7 @@
 package com.bankaccount.domain.money;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 public final class Balance {
     public static final Balance INITIAL = of(0);
@@ -31,7 +32,9 @@ public final class Balance {
     }
 
     public void readAmount(AmountReader amountReader) {
-        amountReader.read(isPositive ? amount.amount : -amount.amount);
+        final AtomicLong positiveAmount = new AtomicLong();
+        amount.readAmount(positiveAmount::set);
+        amountReader.read(isPositive ? positiveAmount.get() : -positiveAmount.get());
     }
 
     @Override
