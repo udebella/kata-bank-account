@@ -22,7 +22,9 @@ public final class Withdrawal implements Operation {
 
     @Override
     public void readOperation(OperationReader operationReader) {
-        operationReader.readOperation("Withdrawal", amount, withdrawDate);
+        operationReader.readOperationType("Withdrawal");
+        operationReader.readAmount(amount);
+        operationReader.readOperationDate(withdrawDate);
     }
 
     @Override

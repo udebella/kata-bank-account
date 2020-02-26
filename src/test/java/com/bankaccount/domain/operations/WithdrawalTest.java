@@ -36,6 +36,8 @@ class WithdrawalTest {
 
         withdrawal.readOperation(operationReader);
 
-        verify(operationReader).readOperation("Withdrawal", amount, date);
+        verify(operationReader).readOperationType("Withdrawal");
+        verify(operationReader).readAmount(amount);
+        verify(operationReader).readOperationDate(date);
     }
 }
