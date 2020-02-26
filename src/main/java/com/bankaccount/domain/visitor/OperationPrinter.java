@@ -3,34 +3,34 @@ package com.bankaccount.domain.visitor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class PrinterVisitor implements AccountVisitor {
+public class OperationPrinter implements AccountVisitor {
     private final Printer printer;
     private String operationType;
     private String operationDate;
     private long amount;
     private long balance;
 
-    public PrinterVisitor(Printer printer) {
+    public OperationPrinter(Printer printer) {
         this.printer = printer;
     }
 
-    public void withOperationType(String operationType) {
+    public void readOperationType(String operationType) {
         this.operationType = operationType;
     }
 
-    public void withOperationDate(LocalDate operationDate) {
+    public void readOperationDate(LocalDate operationDate) {
         this.operationDate = operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public void withAmount(long amount) {
+    public void readAmount(long amount) {
         this.amount = amount;
     }
 
-    public void withBalance(long balance) {
+    public void readBalance(long balance) {
         this.balance = balance;
     }
 
-    public void build() {
+    public void completeOperation() {
         this.printer.print(String.format("%s | %s | %s | %s", this.operationType, this.operationDate, amount, balance));
     }
 }

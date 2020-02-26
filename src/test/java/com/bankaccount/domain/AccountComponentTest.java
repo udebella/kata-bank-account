@@ -5,7 +5,7 @@ import com.bankaccount.domain.money.PositiveAmount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Withdrawal;
 import com.bankaccount.domain.visitor.Printer;
-import com.bankaccount.domain.visitor.PrinterVisitor;
+import com.bankaccount.domain.visitor.OperationPrinter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -53,9 +53,9 @@ public class AccountComponentTest {
                 new Withdrawal(PositiveAmount.of(5), LocalDate.of(2020, Month.FEBRUARY, 23))
         );
         final Printer mock = mock(Printer.class);
-        PrinterVisitor printerVisitor = new PrinterVisitor(mock);
+        OperationPrinter operationPrinter = new OperationPrinter(mock);
 
-        account.accept(printerVisitor);
+        account.accept(operationPrinter);
 
         verify(mock).print("Deposit | 23/02/2020 | 50 | 50");
         verify(mock).print("Withdraw | 23/02/2020 | 10 | 40");

@@ -8,18 +8,18 @@ import java.time.Month;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class PrinterVisitorTest {
+class OperationPrinterTest {
 
     @Test
     void should_print_a_line() {
         final Printer printer = mock(Printer.class);
-        final PrinterVisitor visitor = new PrinterVisitor(printer);
+        final OperationPrinter operationPrinter = new OperationPrinter(printer);
 
-        visitor.withOperationType("Deposit");
-        visitor.withOperationDate(LocalDate.of(2020, Month.FEBRUARY, 23));
-        visitor.withAmount(10);
-        visitor.withBalance(10);
-        visitor.build();
+        operationPrinter.readOperationType("Deposit");
+        operationPrinter.readOperationDate(LocalDate.of(2020, Month.FEBRUARY, 23));
+        operationPrinter.readAmount(10);
+        operationPrinter.readBalance(10);
+        operationPrinter.completeOperation();
 
         verify(printer).print("Deposit | 23/02/2020 | 10 | 10");
     }
