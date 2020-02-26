@@ -3,14 +3,14 @@ package com.bankaccount.domain.visitor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class OperationPrinter implements AccountVisitor {
+public class HistoryPrinter implements AccountVisitor {
     private final Printer printer;
     private String operationType;
     private String operationDate;
     private long amount;
     private long balance;
 
-    public OperationPrinter(Printer printer) {
+    public HistoryPrinter(Printer printer) {
         this.printer = printer;
     }
 
