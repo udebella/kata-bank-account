@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class DepositTest {
     @Test
@@ -23,5 +25,17 @@ public class DepositTest {
         final Balance result = deposit.applyOn(balance);
 
         assertThat(result).isEqualTo(Balance.of(15));
+    }
+
+    @Test
+    void should_allow_to_read_operation() {
+        final Amount amount = Amount.of(5);
+        final LocalDate date = LocalDate.now();
+        final Deposit deposit = new Deposit(amount, date);
+        final OperationReader operationReader = mock(OperationReader.class);
+
+        deposit.readOperation(operationReader);
+
+        verify(operationReader).readOperation("Deposit", amount, date);
     }
 }

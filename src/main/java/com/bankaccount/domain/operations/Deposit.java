@@ -20,6 +20,10 @@ public final class Deposit implements Operation {
         return balance.add(amount);
     }
 
+    public void readOperation(OperationReader operationReader) {
+        operationReader.readOperation("Deposit", amount, depositDate);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
