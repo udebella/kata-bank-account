@@ -2,7 +2,7 @@ package com.bankaccount.domain.money;
 
 import java.util.Objects;
 
-public final class PositiveAmount implements Amount {
+public final class PositiveAmount {
     private final long amount;
 
     private PositiveAmount(long amount) {
@@ -16,12 +16,10 @@ public final class PositiveAmount implements Amount {
         return new PositiveAmount(amount);
     }
 
-    @Override
     public Balance add(PositiveAmount other) {
         return Balance.of(amount + other.amount);
     }
 
-    @Override
     public Balance subtract(PositiveAmount other) {
         return Balance.of(amount - other.amount);
     }
