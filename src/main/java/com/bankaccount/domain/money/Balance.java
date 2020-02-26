@@ -30,6 +30,10 @@ public final class Balance {
         return this.isPositive ? this.amount.subtract(amount) : Balance.negative(this.amount.add(amount));
     }
 
+    public void readAmount(AmountReader amountReader) {
+        amount.readAmount(amountReader);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

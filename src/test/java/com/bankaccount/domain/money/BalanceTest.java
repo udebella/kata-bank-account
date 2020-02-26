@@ -4,6 +4,8 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class BalanceTest {
     @Test
@@ -55,5 +57,15 @@ class BalanceTest {
         final Balance result = balance.subtract(Amount.of(10));
 
         assertThat(result).isEqualTo(Balance.of(-15));
+    }
+
+    @Test
+    void should_allow_to_read_balances() {
+        final Balance balance = Balance.of(5);
+        final AmountReader amountReader = mock(AmountReader.class);
+
+        balance.readAmount(amountReader);
+
+        verify(amountReader).read(5);
     }
 }
