@@ -20,6 +20,10 @@ public final class Withdrawal implements Operation {
         return balance.subtract(amount);
     }
 
+    public void readOperation(OperationReader operationReader) {
+        operationReader.readOperation("Withdrawal", amount, withdrawDate);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
