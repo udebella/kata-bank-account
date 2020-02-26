@@ -20,6 +20,7 @@ public final class Deposit implements Operation {
         return balance.add(amount);
     }
 
+    @Override
     public void readOperation(OperationReader operationReader) {
         operationReader.readOperation("Deposit", amount, depositDate);
     }
