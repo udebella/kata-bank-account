@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public final class Balance {
     public static final Balance INITIAL = of(0);
-    private final PositiveAmount amount;
+    private final Amount amount;
     private final boolean isPositive;
 
-    private Balance(PositiveAmount amount, boolean isPositive) {
+    private Balance(Amount amount, boolean isPositive) {
         this.amount = amount;
         this.isPositive = isPositive;
     }
 
     public static Balance of(long amount) {
         final boolean isPositive = amount > 0;
-        final PositiveAmount positiveAmount = PositiveAmount.of(Math.abs(amount));
+        final Amount positiveAmount = Amount.of(Math.abs(amount));
         return new Balance(positiveAmount, isPositive);
     }
 
@@ -22,11 +22,11 @@ public final class Balance {
         return new Balance(other.amount, false);
     }
 
-    public Balance add(PositiveAmount amount) {
+    public Balance add(Amount amount) {
         return this.isPositive ? this.amount.add(amount) : amount.subtract(this.amount);
     }
 
-    public Balance subtract(PositiveAmount amount) {
+    public Balance subtract(Amount amount) {
         return this.isPositive ? this.amount.subtract(amount) : Balance.negative(this.amount.add(amount));
     }
 

@@ -1,7 +1,7 @@
 package com.bankaccount.domain.operations;
 
 import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.money.Amount;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class DepositTest {
 
     @Test
     void should_apply_deposit_on_balances() {
-        final Deposit deposit = new Deposit(PositiveAmount.of(5), LocalDate.now());
+        final Deposit deposit = new Deposit(Amount.of(5), LocalDate.now());
         final Balance balance = Balance.of(10);
 
         final Balance result = deposit.applyOn(balance);

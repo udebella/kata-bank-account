@@ -1,7 +1,7 @@
 package com.bankaccount.domain;
 
 import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
@@ -27,15 +27,15 @@ public class Account {
                         (balance, balance2) -> {throw new RuntimeException("Need implementation");});
     }
 
-    public void deposit(PositiveAmount amount) {
+    public void deposit(Amount amount) {
         this.applyOperation(Deposit::new, amount);
     }
 
-    public void withdraw(PositiveAmount amount) {
+    public void withdraw(Amount amount) {
         this.applyOperation(Withdrawal::new, amount);
     }
 
-    private void applyOperation(BiFunction<PositiveAmount, LocalDate, Operation> operationConstructor, PositiveAmount amount) {
+    private void applyOperation(BiFunction<Amount, LocalDate, Operation> operationConstructor, Amount amount) {
         final Operation operation = operationConstructor.apply(amount, LocalDate.now());
         this.operations.add(operation);
     }

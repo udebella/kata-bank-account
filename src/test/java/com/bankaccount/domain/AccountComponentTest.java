@@ -1,7 +1,7 @@
 package com.bankaccount.domain;
 
 import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Withdrawal;
 import com.bankaccount.domain.visitor.Printer;
@@ -20,7 +20,7 @@ public class AccountComponentTest {
     void should_allow_deposits() {
         final Account account = new Account();
 
-        account.deposit(PositiveAmount.of(10));
+        account.deposit(Amount.of(10));
 
         Assertions.assertThat(account.balance()).isEqualTo(Balance.of(10));
     }
@@ -29,8 +29,8 @@ public class AccountComponentTest {
     void should_allow_multiple_deposits() {
         final Account account = new Account();
 
-        account.deposit(PositiveAmount.of(10));
-        account.deposit(PositiveAmount.of(20));
+        account.deposit(Amount.of(10));
+        account.deposit(Amount.of(20));
 
         Assertions.assertThat(account.balance()).isEqualTo(Balance.of(30));
     }
@@ -39,7 +39,7 @@ public class AccountComponentTest {
     void should_allow_withdrawal() {
         final Account account = new Account();
 
-        account.withdraw(PositiveAmount.of(10));
+        account.withdraw(Amount.of(10));
 
         Assertions.assertThat(account.balance()).isEqualTo(Balance.of(-10));
     }
@@ -47,10 +47,10 @@ public class AccountComponentTest {
     @Test
     void should_print_history() {
         final Account account = new Account(
-                new Deposit(PositiveAmount.of(50), LocalDate.of(2020, Month.FEBRUARY, 23)),
-                new Withdrawal(PositiveAmount.of(10), LocalDate.of(2020, Month.FEBRUARY, 23)),
-                new Withdrawal(PositiveAmount.of(3), LocalDate.of(2020, Month.FEBRUARY, 23)),
-                new Withdrawal(PositiveAmount.of(5), LocalDate.of(2020, Month.FEBRUARY, 23))
+                new Deposit(Amount.of(50), LocalDate.of(2020, Month.FEBRUARY, 23)),
+                new Withdrawal(Amount.of(10), LocalDate.of(2020, Month.FEBRUARY, 23)),
+                new Withdrawal(Amount.of(3), LocalDate.of(2020, Month.FEBRUARY, 23)),
+                new Withdrawal(Amount.of(5), LocalDate.of(2020, Month.FEBRUARY, 23))
         );
         final Printer mock = mock(Printer.class);
         OperationPrinter operationPrinter = new OperationPrinter(mock);

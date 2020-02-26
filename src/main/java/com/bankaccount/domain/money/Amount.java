@@ -2,25 +2,25 @@ package com.bankaccount.domain.money;
 
 import java.util.Objects;
 
-public final class PositiveAmount {
+public final class Amount {
     private final long amount;
 
-    private PositiveAmount(long amount) {
+    private Amount(long amount) {
         this.amount = amount;
     }
 
-    public static PositiveAmount of(long amount) {
+    public static Amount of(long amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amounts cannot be negative");
         }
-        return new PositiveAmount(amount);
+        return new Amount(amount);
     }
 
-    public Balance add(PositiveAmount other) {
+    public Balance add(Amount other) {
         return Balance.of(amount + other.amount);
     }
 
-    public Balance subtract(PositiveAmount other) {
+    public Balance subtract(Amount other) {
         return Balance.of(amount - other.amount);
     }
 
@@ -32,7 +32,7 @@ public final class PositiveAmount {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PositiveAmount amount1 = (PositiveAmount) o;
+        Amount amount1 = (Amount) o;
         return amount == amount1.amount;
     }
 

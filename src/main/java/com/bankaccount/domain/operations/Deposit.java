@@ -1,16 +1,16 @@
 package com.bankaccount.domain.operations;
 
 import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.money.Amount;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 public final class Deposit implements Operation {
-    private final PositiveAmount amount;
+    private final Amount amount;
     private final LocalDate depositDate;
 
-    public Deposit(PositiveAmount amount, LocalDate depositDate) {
+    public Deposit(Amount amount, LocalDate depositDate) {
         this.amount = amount;
         this.depositDate = depositDate;
     }

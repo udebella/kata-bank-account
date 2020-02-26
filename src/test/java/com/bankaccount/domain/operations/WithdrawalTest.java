@@ -1,7 +1,7 @@
 package com.bankaccount.domain.operations;
 
 import com.bankaccount.domain.money.Balance;
-import com.bankaccount.domain.money.PositiveAmount;
+import com.bankaccount.domain.money.Amount;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class WithdrawalTest {
 
     @Test
     void should_apply_withdrawal_on_balances() {
-        final Withdrawal withdrawal = new Withdrawal(PositiveAmount.of(5), LocalDate.now());
+        final Withdrawal withdrawal = new Withdrawal(Amount.of(5), LocalDate.now());
         final Balance balance = Balance.of(10);
 
         final Balance result = withdrawal.applyOn(balance);
