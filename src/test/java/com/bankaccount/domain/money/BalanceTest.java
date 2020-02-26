@@ -68,4 +68,14 @@ class BalanceTest {
 
         verify(amountReader).read(5);
     }
+
+    @Test
+    void should_allow_to_read_negative_balances() {
+        final Balance balance = Balance.of(-5);
+        final AmountReader amountReader = mock(AmountReader.class);
+
+        balance.readAmount(amountReader);
+
+        verify(amountReader).read(-5);
+    }
 }

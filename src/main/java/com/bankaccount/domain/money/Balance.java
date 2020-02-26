@@ -31,7 +31,7 @@ public final class Balance {
     }
 
     public void readAmount(AmountReader amountReader) {
-        amount.readAmount(amountReader);
+        amountReader.read(isPositive ? amount.amount : -amount.amount);
     }
 
     @Override
