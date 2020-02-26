@@ -40,6 +40,7 @@ public class Account {
         this.operations.add(operation);
     }
 
-    public void accept(AccountVisitor visitor) {
+    public void readAccount(AccountVisitor accountReader) {
+        operations.forEach(accountReader::readOperation);
     }
 }

@@ -3,11 +3,14 @@ package com.bankaccount.domain;
 import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
+import com.bankaccount.domain.visitor.AccountVisitor;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class AccountTest {
     @Test
@@ -37,5 +40,16 @@ public class AccountTest {
         final Balance balance = account.balance();
 
         assertThat(balance).isEqualTo(Balance.of(12));
+    }
+
+    @Test
+    void should_allow_to_read_an_account() {
+        final Deposit operation = new Deposit(Amount.of(5), LocalDate.now());
+        final Account account = new Account(operation);
+
+        final AccountVisitor accountReader = mock(AccountVisitor.class);
+        account.readAccount(accountReader);
+
+        verify(accountReader).readOperation(operation);
     }
 }

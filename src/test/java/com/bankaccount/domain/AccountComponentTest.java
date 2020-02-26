@@ -55,7 +55,7 @@ public class AccountComponentTest {
         final Printer mock = mock(Printer.class);
         HistoryPrinter historyPrinter = new HistoryPrinter(mock);
 
-        account.accept(historyPrinter);
+        account.readAccount(historyPrinter);
 
         verify(mock).print("Deposit | 23/02/2020 | 50 | 50");
         verify(mock).print("Withdraw | 23/02/2020 | 10 | 40");

@@ -1,5 +1,7 @@
 package com.bankaccount.domain.visitor;
 
+import com.bankaccount.domain.operations.Operation;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -32,5 +34,10 @@ public class HistoryPrinter implements AccountVisitor {
 
     public void completeOperation() {
         this.printer.print(String.format("%s | %s | %s | %s", this.operationType, this.operationDate, amount, balance));
+    }
+
+    @Override
+    public void readOperation(Operation operation) {
+
     }
 }
