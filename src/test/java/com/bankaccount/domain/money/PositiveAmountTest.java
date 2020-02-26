@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class PositiveAmountTest {
     @Test
@@ -64,5 +66,15 @@ class PositiveAmountTest {
         final Balance balance = amount.subtract(amount2);
 
         assertThat(balance).isEqualTo(Balance.of(5));
+    }
+
+    @Test
+    void should_allow_to_read_the_amount() {
+        final PositiveAmount amount = PositiveAmount.of(10);
+        final AmountReader amountReader = mock(AmountReader.class);
+
+        amount.readAmount(amountReader);
+
+        verify(amountReader).read(10);
     }
 }

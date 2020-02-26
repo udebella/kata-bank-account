@@ -26,6 +26,10 @@ public final class PositiveAmount implements Amount {
         return Balance.of(amount - other.amount);
     }
 
+    public void readAmount(AmountReader amountReader) {
+        amountReader.read(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
