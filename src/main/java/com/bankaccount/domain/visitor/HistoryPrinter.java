@@ -1,6 +1,7 @@
 package com.bankaccount.domain.visitor;
 
-import com.bankaccount.domain.operations.Operation;
+import com.bankaccount.domain.money.Amount;
+import com.bankaccount.domain.operations.OperationReader;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,12 +17,22 @@ public class HistoryPrinter implements AccountReader {
         this.printer = printer;
     }
 
-    public void readOperationType(String operationType) {
+    @Override
+    public OperationReader readOperationType(String operationType) {
         this.operationType = operationType;
+        return this;
     }
 
-    public void readOperationDate(LocalDate operationDate) {
+    @Override
+    public OperationReader readOperationDate(LocalDate operationDate) {
         this.operationDate = operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return this;
+    }
+
+    @Override
+    public OperationReader readAmount(Amount amount) {
+        amount.readAmount(this::readAmount);
+        return this;
     }
 
     public void readAmount(long amount) {
@@ -34,10 +45,5 @@ public class HistoryPrinter implements AccountReader {
 
     public void completeOperation() {
         this.printer.print(String.format("%s | %s | %s | %s", this.operationType, this.operationDate, amount, balance));
-    }
-
-    @Override
-    public void readOperation(Operation operation) {
-
     }
 }

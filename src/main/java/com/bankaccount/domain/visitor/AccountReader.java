@@ -1,7 +1,8 @@
 package com.bankaccount.domain.visitor;
 
-import com.bankaccount.domain.operations.Operation;
+import com.bankaccount.domain.operations.OperationReader;
 
-public interface AccountReader {
-    void readOperation(Operation operation);
+public interface AccountReader extends OperationReader {
+    void readBalance(long balance);
+    void completeOperation();
 }

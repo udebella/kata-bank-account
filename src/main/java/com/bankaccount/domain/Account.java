@@ -41,6 +41,15 @@ public class Account {
     }
 
     public void readAccount(AccountReader accountReader) {
-        operations.forEach(accountReader::readOperation);
+        operations.stream()
+                .reduce(Balance.INITIAL,
+                        (balance, operation) -> {
+                            operation.readOperation(accountReader);
+                            final Balance balance1 = operation.applyOn(balance);
+                            balance1.readAmount(accountReader::readBalance);
+                            accountReader.completeOperation();
+                            return balance1;
+                        },
+                        (balance, balance2) -> {throw new RuntimeException("Need implementation");});
     }
 }
