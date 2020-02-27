@@ -1,4 +1,4 @@
-package com.bankaccount.domain.visitor;
+package com.bankaccount.domain.history;
 
 import org.junit.jupiter.api.Test;
 

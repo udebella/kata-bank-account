@@ -4,8 +4,8 @@ import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Withdrawal;
-import com.bankaccount.domain.visitor.Printer;
-import com.bankaccount.domain.visitor.HistoryPrinter;
+import com.bankaccount.domain.history.Printer;
+import com.bankaccount.domain.history.HistoryPrinter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.bankaccount.domain.visitor;
+package com.bankaccount.domain.history;
 
 import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.OperationReader;
