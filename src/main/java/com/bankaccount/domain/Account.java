@@ -20,13 +20,6 @@ public class Account {
         this.operations = Stream.of(operations).collect(Collectors.toList());
     }
 
-    public Balance balance() {
-        return operations.stream()
-                .reduce(Balance.INITIAL,
-                        (balance, operation) -> operation.applyOn(balance),
-                        (balance, balance2) -> {throw new RuntimeException("Need implementation");});
-    }
-
     public void deposit(Amount amount) {
         this.applyOperation(Deposit::new, amount);
     }
@@ -40,16 +33,24 @@ public class Account {
         this.operations.add(operation);
     }
 
+    public Balance balance() {
+        return computeBalance((balance, operation) -> operation.applyOn(balance));
+    }
+
     public void readAccount(AccountReader accountReader) {
-        operations.stream()
+        computeBalance((currentBalance, operation) -> {
+            final Balance nextBalance = operation.applyOn(currentBalance);
+            operation.readOperation(accountReader);
+            nextBalance.readAmount(accountReader::readBalance);
+            accountReader.completeOperation();
+            return nextBalance;
+        });
+    }
+
+    private Balance computeBalance(BiFunction<Balance, Operation, Balance> accumulator) {
+        return operations.stream()
                 .reduce(Balance.INITIAL,
-                        (balance, operation) -> {
-                            operation.readOperation(accountReader);
-                            final Balance balance1 = operation.applyOn(balance);
-                            balance1.readAmount(accountReader::readBalance);
-                            accountReader.completeOperation();
-                            return balance1;
-                        },
+                        accumulator,
                         (balance, balance2) -> {throw new RuntimeException("Need implementation");});
     }
 }
