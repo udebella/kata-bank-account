@@ -41,15 +41,4 @@ public class AccountTest {
 
         assertThat(balance).isEqualTo(Balance.of(12));
     }
-
-    @Test
-    void should_allow_to_read_an_account() {
-        final Deposit operation = new Deposit(Amount.of(5), LocalDate.now());
-        final Account account = new Account(operation);
-
-        final AccountVisitor accountReader = mock(AccountVisitor.class);
-        account.readAccount(accountReader);
-
-        verify(accountReader).readOperation(operation);
-    }
 }
