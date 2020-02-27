@@ -22,7 +22,7 @@ public class AccountComponentTest {
         final LocalDate operationDate = LocalDate.now();
         final Account account = new Account(() -> operationDate);
 
-        Operation operation = account.deposit(Amount.of(10));
+        final Operation operation = account.deposit(Amount.of(10));
 
         assertThat(account.balance()).isEqualTo(Balance.of(10));
         assertThat(operation).isEqualTo(new Deposit(Amount.of(10), operationDate));
