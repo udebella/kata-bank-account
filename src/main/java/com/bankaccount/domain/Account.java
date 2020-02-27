@@ -5,7 +5,7 @@ import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
-import com.bankaccount.domain.visitor.AccountVisitor;
+import com.bankaccount.domain.visitor.AccountReader;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Account {
         this.operations.add(operation);
     }
 
-    public void readAccount(AccountVisitor accountReader) {
+    public void readAccount(AccountReader accountReader) {
         operations.forEach(accountReader::readOperation);
     }
 }

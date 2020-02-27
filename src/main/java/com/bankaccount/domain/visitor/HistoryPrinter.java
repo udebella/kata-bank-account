@@ -5,7 +5,7 @@ import com.bankaccount.domain.operations.Operation;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class HistoryPrinter implements AccountVisitor {
+public class HistoryPrinter implements AccountReader {
     private final Printer printer;
     private String operationType;
     private String operationDate;
