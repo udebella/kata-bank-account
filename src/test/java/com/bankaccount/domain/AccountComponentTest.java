@@ -1,18 +1,18 @@
 package com.bankaccount.domain;
 
-import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.history.HistoryPrinter;
+import com.bankaccount.domain.history.Printer;
 import com.bankaccount.domain.money.Amount;
+import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
-import com.bankaccount.domain.history.Printer;
-import com.bankaccount.domain.history.HistoryPrinter;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -24,8 +24,8 @@ public class AccountComponentTest {
 
         Operation operation = account.deposit(Amount.of(10));
 
-        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(10));
-        Assertions.assertThat(operation).isEqualTo(new Deposit(Amount.of(10), operationDate));
+        assertThat(account.balance()).isEqualTo(Balance.of(10));
+        assertThat(operation).isEqualTo(new Deposit(Amount.of(10), operationDate));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AccountComponentTest {
         account.deposit(Amount.of(10));
         account.deposit(Amount.of(20));
 
-        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(30));
+        assertThat(account.balance()).isEqualTo(Balance.of(30));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class AccountComponentTest {
 
         account.withdraw(Amount.of(10));
 
-        Assertions.assertThat(account.balance()).isEqualTo(Balance.of(-10));
+        assertThat(account.balance()).isEqualTo(Balance.of(-10));
     }
 
     @Test
