@@ -3,6 +3,7 @@ package com.bankaccount.domain;
 import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Deposit;
+import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
 import com.bankaccount.domain.history.Printer;
 import com.bankaccount.domain.history.HistoryPrinter;
@@ -18,11 +19,13 @@ import static org.mockito.Mockito.verify;
 public class AccountComponentTest {
     @Test
     void should_allow_deposits() {
-        final Account account = new Account();
+        final LocalDate operationDate = LocalDate.now();
+        final Account account = new Account(() -> operationDate);
 
-        account.deposit(Amount.of(10));
+        Operation operation = account.deposit(Amount.of(10));
 
         Assertions.assertThat(account.balance()).isEqualTo(Balance.of(10));
+        Assertions.assertThat(operation).isEqualTo(new Deposit(Amount.of(10), operationDate));
     }
 
     @Test
