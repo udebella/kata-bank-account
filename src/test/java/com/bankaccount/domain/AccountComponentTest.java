@@ -52,14 +52,14 @@ public class AccountComponentTest {
                 new Withdrawal(Amount.of(3), LocalDate.of(2020, Month.FEBRUARY, 23)),
                 new Withdrawal(Amount.of(5), LocalDate.of(2020, Month.FEBRUARY, 23))
         );
-        final Printer mock = mock(Printer.class);
-        HistoryPrinter historyPrinter = new HistoryPrinter(mock);
+        final Printer printer = mock(Printer.class);
+        HistoryPrinter historyPrinter = new HistoryPrinter(printer);
 
         account.readAccount(historyPrinter);
 
-        verify(mock).print("Deposit | 23/02/2020 | 50 | 50");
-        verify(mock).print("Withdraw | 23/02/2020 | 10 | 40");
-        verify(mock).print("Withdraw | 23/02/2020 | 3 | 37");
-        verify(mock).print("Withdraw | 23/02/2020 | 5 | 32");
+        verify(printer).print("Deposit | 23/02/2020 | 50 | 50");
+        verify(printer).print("Withdraw | 23/02/2020 | 10 | 40");
+        verify(printer).print("Withdraw | 23/02/2020 | 3 | 37");
+        verify(printer).print("Withdraw | 23/02/2020 | 5 | 32");
     }
 }
