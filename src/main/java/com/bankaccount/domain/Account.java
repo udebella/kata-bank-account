@@ -30,8 +30,8 @@ public class Account {
         return this.applyOperation(Deposit::new, amount);
     }
 
-    public void withdraw(Amount amount) {
-        this.applyOperation(Withdrawal::new, amount);
+    public Operation withdraw(Amount amount) {
+        return this.applyOperation(Withdrawal::new, amount);
     }
 
     private Operation applyOperation(BiFunction<Amount, LocalDate, Operation> operationConstructor, Amount amount) {

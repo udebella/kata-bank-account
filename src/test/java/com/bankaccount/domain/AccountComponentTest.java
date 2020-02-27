@@ -40,11 +40,13 @@ public class AccountComponentTest {
 
     @Test
     void should_allow_withdrawal() {
-        final Account account = new Account();
+        final LocalDate operationDate = LocalDate.now();
+        final Account account = new Account(() -> operationDate);
 
-        account.withdraw(Amount.of(10));
+        final Operation operation = account.withdraw(Amount.of(10));
 
         assertThat(account.balance()).isEqualTo(Balance.of(-10));
+        assertThat(operation).isEqualTo(new Withdrawal(Amount.of(10), operationDate));
     }
 
     @Test
