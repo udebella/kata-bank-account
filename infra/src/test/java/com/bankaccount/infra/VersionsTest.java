@@ -1,6 +1,7 @@
 package com.bankaccount.infra;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -12,6 +13,11 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 class VersionsTest {
+    @Test
+    void should_verify_equality() {
+        EqualsVerifier.forClass(Versions.class).verify();
+    }
+
     @Test
     void should_serialize_properly_simple_version() throws IOException, URISyntaxException, JSONException {
         final String json = new ObjectMapper().writeValueAsString(new Versions(0));
