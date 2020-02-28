@@ -1,4 +1,4 @@
-package com.bankaccount.infra;
+package com.bankaccount.infra.controller;
 
 import java.util.List;
 import java.util.Objects;

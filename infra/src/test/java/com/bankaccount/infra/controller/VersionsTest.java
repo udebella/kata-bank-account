@@ -1,5 +1,6 @@
-package com.bankaccount.infra;
+package com.bankaccount.infra.controller;
 
+import com.bankaccount.infra.controller.Versions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.json.JSONException;

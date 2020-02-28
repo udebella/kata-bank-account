@@ -1,4 +1,4 @@
-package infra;
+package com.bankaccount.infra.repository;
 
 import com.bankaccount.domain.operations.Operation;
 

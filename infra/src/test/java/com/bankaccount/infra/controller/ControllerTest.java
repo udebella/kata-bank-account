@@ -1,12 +1,12 @@
-package com.bankaccount.infra;
+package com.bankaccount.infra.controller;
 
-import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
-import infra.Repository;
+import com.bankaccount.infra.controller.Controller;
+import com.bankaccount.infra.controller.Versions;
+import com.bankaccount.infra.repository.Repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
