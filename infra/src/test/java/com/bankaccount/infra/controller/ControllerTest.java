@@ -7,8 +7,10 @@ import com.bankaccount.domain.operations.Withdrawal;
 import com.bankaccount.infra.repository.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -55,7 +57,10 @@ public class ControllerTest {
         final ResponseEntity<?> response = controller.history(1);
 
         final List<HistoryLine> history = Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10));
-        assertThat(response).isEqualTo(ResponseEntity.ok().body(history));
+        final ResponseEntity<List<HistoryLine>> expectedResponse = ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(Duration.ofDays(365)))
+                .body(history);
+        assertThat(response).isEqualTo(expectedResponse);
     }
 
     @Test
@@ -66,7 +71,10 @@ public class ControllerTest {
         final ResponseEntity<?> response = controller.history(1);
 
         final List<HistoryLine> history = Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10));
-        assertThat(response).isEqualTo(ResponseEntity.ok().body(history));
+        final ResponseEntity<List<HistoryLine>> expectedResponse = ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(Duration.ofDays(365)))
+                .body(history);
+        assertThat(response).isEqualTo(expectedResponse);
     }
 
     @Test

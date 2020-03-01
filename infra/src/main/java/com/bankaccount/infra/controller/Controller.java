@@ -5,11 +5,13 @@ import com.bankaccount.domain.history.HistoryPrinter;
 import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.infra.repository.Repository;
+import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class Controller {
         account.readAccount(historyPrinter);
 
         return ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(Duration.ofDays(365)))
                 .body(lines);
     }
 
