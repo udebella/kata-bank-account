@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -53,7 +54,8 @@ public class ControllerTest {
 
         final ResponseEntity<?> response = controller.history(1);
 
-        assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
+        final List<HistoryLine> history = Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10));
+        assertThat(response).isEqualTo(ResponseEntity.ok().body(history));
     }
 
     @Test
@@ -63,7 +65,8 @@ public class ControllerTest {
 
         final ResponseEntity<?> response = controller.history(1);
 
-        assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
+        final List<HistoryLine> history = Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10));
+        assertThat(response).isEqualTo(ResponseEntity.ok().body(history));
     }
 
     @Test
