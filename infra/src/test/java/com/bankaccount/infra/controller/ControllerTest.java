@@ -1,9 +1,8 @@
 package com.bankaccount.infra.controller;
 
 import com.bankaccount.domain.operations.Operation;
-import com.bankaccount.infra.controller.Controller;
-import com.bankaccount.infra.controller.Versions;
 import com.bankaccount.infra.repository.Repository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
@@ -14,10 +13,18 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 public class ControllerTest {
+
+    private Controller controller;
+    private Repository repository;
+
+    @BeforeEach
+    void setUp() {
+        repository = mock(Repository.class);
+        controller = new Controller(repository);
+    }
+
     @Test
     void should_return_no_versions_when_repository_is_empty() {
-        final Repository repository = mock(Repository.class);
-        final Controller controller = new Controller(repository);
         doReturn(Collections.emptyList()).when(repository).operations();
 
         final ResponseEntity<?> response = controller.versions();
@@ -27,8 +34,6 @@ public class ControllerTest {
 
     @Test
     void should_return_list_of_versions() {
-        final Repository repository = mock(Repository.class);
-        final Controller controller = new Controller(repository);
         doReturn(Collections.singletonList(mock(Operation.class))).when(repository).operations();
 
         final ResponseEntity<?> response = controller.versions();
