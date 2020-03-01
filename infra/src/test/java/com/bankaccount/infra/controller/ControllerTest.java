@@ -52,7 +52,7 @@ public class ControllerTest {
         final LocalDate operationDate = LocalDate.of(2020, Month.MARCH, 1);
         doReturn(Collections.singletonList(new Deposit(Amount.of(10), operationDate))).when(repository).operations();
 
-        final ResponseEntity<?> response = controller.history(0L);
+        final ResponseEntity<?> response = controller.history(1L);
 
         assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
     }
@@ -62,7 +62,7 @@ public class ControllerTest {
         final LocalDate operationDate = LocalDate.of(2020, Month.MARCH, 1);
         doReturn(Arrays.asList(new Deposit(Amount.of(10), operationDate), new Withdrawal(Amount.of(10), operationDate))).when(repository).operations();
 
-        final ResponseEntity<?> response = controller.history(0L);
+        final ResponseEntity<?> response = controller.history(1L);
 
         assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
     }

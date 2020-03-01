@@ -33,7 +33,7 @@ public class Controller {
     public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") Long version) {
         final Operation[] operations = repository.operations()
                 .stream()
-                .limit(version + 1)
+                .limit(version)
                 .toArray(Operation[]::new);
         final Account account = new Account(operations);
         final ArrayList<HistoryLine> lines = new ArrayList<>();
