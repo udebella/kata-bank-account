@@ -56,4 +56,10 @@ public class ControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/deposit/100"))
                 .andExpect(MockMvcResultMatchers.status().is(204));
     }
+
+    @Test
+    void should_respond_to_withdraw_endpoint() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/withdraw/100"))
+                .andExpect(MockMvcResultMatchers.status().is(204));
+    }
 }

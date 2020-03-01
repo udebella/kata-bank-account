@@ -51,7 +51,8 @@ public class Controller {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<?> withdraw(long amount) {
+    @GetMapping(path = "/withdraw/{amount}")
+    public ResponseEntity<?> withdraw(@PathVariable("amount") long amount) {
         final Account account = getAccount();
 
         final Operation operation = account.withdraw(Amount.of(amount));
