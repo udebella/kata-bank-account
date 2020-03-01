@@ -15,8 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class ControllerTest {
 
@@ -65,5 +64,15 @@ public class ControllerTest {
         final ResponseEntity<?> response = controller.history(1L);
 
         assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
+    }
+
+    @Test
+    void should_allow_deposits() {
+        doReturn(Collections.emptyList()).when(repository).operations();
+
+        final ResponseEntity<?> response = controller.deposit(100L);
+
+        verify(repository).add(new Deposit(Amount.of(100L), LocalDate.of(2020, Month.MARCH, 1)));
+        assertThat(response).isEqualTo(ResponseEntity.noContent().build());
     }
 }

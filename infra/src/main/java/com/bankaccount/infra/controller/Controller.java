@@ -2,6 +2,7 @@ package com.bankaccount.infra.controller;
 
 import com.bankaccount.domain.Account;
 import com.bankaccount.domain.history.HistoryPrinter;
+import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.infra.repository.Repository;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,14 @@ public class Controller {
 
         return ResponseEntity.ok()
                 .body(lines);
+    }
+
+    public ResponseEntity<?> deposit(long amount) {
+        final Operation[] operations = repository.operations().toArray(new Operation[]{});
+        final Account account = new Account(operations);
+
+        final Operation operation = account.deposit(Amount.of(amount));
+        repository.add(operation);
+        return ResponseEntity.noContent().build();
     }
 }
