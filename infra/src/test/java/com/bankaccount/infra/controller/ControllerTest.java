@@ -1,11 +1,15 @@
 package com.bankaccount.infra.controller;
 
+import com.bankaccount.domain.money.Amount;
+import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.infra.repository.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,5 +43,15 @@ public class ControllerTest {
         final ResponseEntity<?> response = controller.versions();
 
         assertThat(response).isEqualTo(ResponseEntity.ok(new Versions(1)));
+    }
+
+    @Test
+    void should_return_history() {
+        final LocalDate operationDate = LocalDate.of(2020, Month.MARCH, 1);
+        doReturn(Collections.singletonList(new Deposit(Amount.of(10), operationDate))).when(repository).operations();
+
+        final ResponseEntity<?> response = controller.history();
+
+        assertThat(response).isEqualTo(ResponseEntity.ok(Collections.singletonList(new HistoryLine("Deposit", operationDate, 10, 10))));
     }
 }
