@@ -10,7 +10,8 @@ public final class Versions {
 
     public Versions(int maxVersionNumber) {
         this.versions = IntStream.rangeClosed(1, maxVersionNumber)
-                .mapToObj(version -> "/history/" + version)
+                .mapToObj(String::valueOf)
+                .map(version -> Controller.HISTORY_PATH.replaceFirst("\\{version}", version))
                 .collect(Collectors.toList());
     }
 

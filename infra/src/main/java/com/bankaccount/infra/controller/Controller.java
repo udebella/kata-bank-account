@@ -15,6 +15,7 @@ import java.util.List;
 
 @RequestMapping
 public class Controller {
+    public static final String HISTORY_PATH = "/history/{version}";
     private final Repository repository;
 
     public Controller(Repository repository) {
@@ -30,7 +31,7 @@ public class Controller {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping(path = "/history/{version}")
+    @GetMapping(path = HISTORY_PATH)
     public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") int version) {
         final Account account = getAccount(version);
         final ArrayList<HistoryLine> lines = new ArrayList<>();
