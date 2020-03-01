@@ -31,7 +31,11 @@ public class Controller {
 
     @GetMapping(path = "/history/{version}")
     public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") Long version) {
-        final Account account = new Account(repository.operations().toArray(new Operation[]{}));
+        final Operation[] operations = repository.operations()
+                .stream()
+                .limit(version + 1)
+                .toArray(Operation[]::new);
+        final Account account = new Account(operations);
         final ArrayList<HistoryLine> lines = new ArrayList<>();
         final HistoryPrinter historyPrinter = new HistoryPrinter((operationType, operationDate, amount, balance) -> lines.add(new HistoryLine(operationType, operationDate, amount, balance)));
 
