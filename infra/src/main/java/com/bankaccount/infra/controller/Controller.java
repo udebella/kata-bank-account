@@ -6,6 +6,7 @@ import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.infra.repository.Repository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class Controller {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<List<HistoryLine>> history() {
+    @GetMapping(path = "/history/{version}")
+    public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") Long version) {
         final Account account = new Account(repository.operations().toArray(new Operation[]{}));
         final ArrayList<HistoryLine> lines = new ArrayList<>();
         final HistoryPrinter historyPrinter = new HistoryPrinter((operationType, operationDate, amount, balance) -> lines.add(new HistoryLine(operationType, operationDate, amount, balance)));

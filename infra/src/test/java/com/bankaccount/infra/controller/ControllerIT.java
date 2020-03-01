@@ -44,4 +44,10 @@ public class ControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/versions"))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }
+
+    @Test
+    void should_respond_to_history_endpoint() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/history/0"))
+                .andExpect(MockMvcResultMatchers.status().is(200));
+    }
 }
