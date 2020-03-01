@@ -10,7 +10,7 @@ public final class Versions {
 
     public Versions(int maxVersionNumber) {
         this.versions = IntStream.rangeClosed(1, maxVersionNumber)
-                .mapToObj(version -> "/" + version)
+                .mapToObj(version -> "/history/" + version)
                 .collect(Collectors.toList());
     }
 
