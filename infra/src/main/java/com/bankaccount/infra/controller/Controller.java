@@ -42,7 +42,8 @@ public class Controller {
                 .body(lines);
     }
 
-    public ResponseEntity<?> deposit(long amount) {
+    @GetMapping(path = "/deposit/{amount}")
+    public ResponseEntity<?> deposit(@PathVariable("amount") long amount) {
         final Account account = getAccount();
 
         final Operation operation = account.deposit(Amount.of(amount));

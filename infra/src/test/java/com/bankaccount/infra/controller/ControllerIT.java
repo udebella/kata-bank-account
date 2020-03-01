@@ -50,4 +50,10 @@ public class ControllerIT {
         mockMvc.perform(MockMvcRequestBuilders.get("/history/0"))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }
+
+    @Test
+    void should_respond_to_deposit_endpoint() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/deposit/100"))
+                .andExpect(MockMvcResultMatchers.status().is(204));
+    }
 }
