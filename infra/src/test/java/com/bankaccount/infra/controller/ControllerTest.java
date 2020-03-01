@@ -75,4 +75,14 @@ public class ControllerTest {
         verify(repository).add(new Deposit(Amount.of(100L), LocalDate.of(2020, Month.MARCH, 1)));
         assertThat(response).isEqualTo(ResponseEntity.noContent().build());
     }
+
+    @Test
+    void should_allow_withdrawal() {
+        doReturn(Collections.emptyList()).when(repository).operations();
+
+        final ResponseEntity<?> response = controller.withdraw(100L);
+
+        verify(repository).add(new Withdrawal(Amount.of(100L), LocalDate.of(2020, Month.MARCH, 1)));
+        assertThat(response).isEqualTo(ResponseEntity.noContent().build());
+    }
 }

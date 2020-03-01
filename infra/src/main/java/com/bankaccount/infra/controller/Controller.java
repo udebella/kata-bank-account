@@ -54,4 +54,13 @@ public class Controller {
         repository.add(operation);
         return ResponseEntity.noContent().build();
     }
+
+    public ResponseEntity<?> withdraw(long amount) {
+        final Operation[] operations = repository.operations().toArray(new Operation[]{});
+        final Account account = new Account(operations);
+
+        final Operation operation = account.withdraw(Amount.of(amount));
+        repository.add(operation);
+        return ResponseEntity.noContent().build();
+    }
 }
