@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class HistoryPrinter implements AccountReader {
     private final Printer printer;
     private String operationType;
-    private String operationDate;
+    private LocalDate operationDate;
     private long amount;
     private long balance;
 
@@ -25,7 +25,7 @@ public class HistoryPrinter implements AccountReader {
 
     @Override
     public OperationReader readOperationDate(LocalDate operationDate) {
-        this.operationDate = operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.operationDate = operationDate;
         return this;
     }
 
@@ -44,6 +44,7 @@ public class HistoryPrinter implements AccountReader {
     }
 
     public void completeOperation() {
-        this.printer.print(String.format("%s | %s | %s | %s", this.operationType, this.operationDate, amount, balance));
+        this.printer.print(String.format("%s | %s | %s | %s", this.operationType, operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), amount, balance));
+        this.printer.print(this.operationType, this.operationDate, amount, balance);
     }
 }

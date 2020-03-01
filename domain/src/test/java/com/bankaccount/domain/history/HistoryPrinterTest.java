@@ -21,6 +21,6 @@ class HistoryPrinterTest {
         historyPrinter.readBalance(10);
         historyPrinter.completeOperation();
 
-        verify(printer).print("Deposit | 23/02/2020 | 10 | 10");
+        verify(printer).print("Deposit", LocalDate.of(2020, Month.FEBRUARY, 23), 10, 10);
     }
 }
