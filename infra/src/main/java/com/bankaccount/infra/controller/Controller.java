@@ -32,11 +32,7 @@ public class Controller {
 
     @GetMapping(path = "/history/{version}")
     public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") int version) {
-        final Operation[] operations = repository.operations()
-                .stream()
-                .limit(version)
-                .toArray(Operation[]::new);
-        final Account account = new Account(operations);
+        final Account account = getAccount(version);
         final ArrayList<HistoryLine> lines = new ArrayList<>();
         final HistoryPrinter historyPrinter = new HistoryPrinter((operationType, operationDate, amount, balance) -> lines.add(new HistoryLine(operationType, operationDate, amount, balance)));
 
@@ -47,8 +43,7 @@ public class Controller {
     }
 
     public ResponseEntity<?> deposit(long amount) {
-        final Operation[] operations = repository.operations().toArray(new Operation[]{});
-        final Account account = new Account(operations);
+        final Account account = getAccount();
 
         final Operation operation = account.deposit(Amount.of(amount));
         repository.add(operation);
@@ -56,11 +51,23 @@ public class Controller {
     }
 
     public ResponseEntity<?> withdraw(long amount) {
-        final Operation[] operations = repository.operations().toArray(new Operation[]{});
-        final Account account = new Account(operations);
+        final Account account = getAccount();
 
         final Operation operation = account.withdraw(Amount.of(amount));
         repository.add(operation);
         return ResponseEntity.noContent().build();
+    }
+
+    private Account getAccount() {
+        final int lastVersion = repository.operations().size();
+        return getAccount(lastVersion);
+    }
+
+    private Account getAccount(int version) {
+        final Operation[] operations = repository.operations()
+                .stream()
+                .limit(version)
+                .toArray(Operation[]::new);
+        return new Account(operations);
     }
 }
