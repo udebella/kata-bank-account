@@ -62,9 +62,9 @@ public class AccountComponentTest {
 
         account.readAccount(historyPrinter);
 
-        verify(printer).print("Deposit | 23/02/2020 | 50 | 50");
-        verify(printer).print("Withdraw | 23/02/2020 | 10 | 40");
-        verify(printer).print("Withdraw | 23/02/2020 | 3 | 37");
-        verify(printer).print("Withdraw | 23/02/2020 | 5 | 32");
+        verify(printer).print("Deposit", LocalDate.of(2020, Month.FEBRUARY, 23), 50, 50);
+        verify(printer).print("Withdraw", LocalDate.of(2020, Month.FEBRUARY, 23), 10, 40);
+        verify(printer).print("Withdraw", LocalDate.of(2020, Month.FEBRUARY, 23), 3, 37);
+        verify(printer).print("Withdraw", LocalDate.of(2020, Month.FEBRUARY, 23), 5, 32);
     }
 }
