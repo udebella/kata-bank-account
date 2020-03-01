@@ -1,6 +1,5 @@
 package com.bankaccount.infra.controller;
 
-import com.bankaccount.infra.controller.Versions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.json.JSONException;
@@ -21,7 +20,7 @@ class VersionsTest {
 
     @Test
     void should_serialize_properly_simple_version() throws IOException, URISyntaxException, JSONException {
-        final String json = new ObjectMapper().writeValueAsString(new Versions(0));
+        final String json = new ObjectMapper().writeValueAsString(new Versions(1));
 
         final String expected = Files.lines(Paths.get(getClass().getResource("/versions/simple-version.json").toURI())).collect(Collectors.joining());
         JSONAssert.assertEquals(expected, json, true);
@@ -29,7 +28,7 @@ class VersionsTest {
 
     @Test
     void should_serialize_properly_multi_versions() throws IOException, URISyntaxException, JSONException {
-        final String json = new ObjectMapper().writeValueAsString(new Versions(2));
+        final String json = new ObjectMapper().writeValueAsString(new Versions(3));
 
         final String expected = Files.lines(Paths.get(getClass().getResource("/versions/multi-version.json").toURI())).collect(Collectors.joining());
         JSONAssert.assertEquals(expected, json, true);

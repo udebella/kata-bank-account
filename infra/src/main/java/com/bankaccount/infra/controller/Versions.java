@@ -9,7 +9,7 @@ public final class Versions {
     private final List<String> versions;
 
     public Versions(int maxVersionNumber) {
-        this.versions = IntStream.rangeClosed(0, maxVersionNumber)
+        this.versions = IntStream.rangeClosed(1, maxVersionNumber)
                 .mapToObj(version -> "/" + version)
                 .collect(Collectors.toList());
     }
