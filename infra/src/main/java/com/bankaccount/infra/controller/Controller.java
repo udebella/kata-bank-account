@@ -31,7 +31,7 @@ public class Controller {
     }
 
     @GetMapping(path = "/history/{version}")
-    public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") Long version) {
+    public ResponseEntity<List<HistoryLine>> history(@PathVariable("version") int version) {
         final Operation[] operations = repository.operations()
                 .stream()
                 .limit(version)
