@@ -4,7 +4,6 @@ import com.bankaccount.domain.money.Amount;
 import com.bankaccount.domain.operations.OperationReader;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class HistoryPrinter implements AccountReader {
     private final Printer printer;
@@ -44,7 +43,6 @@ public class HistoryPrinter implements AccountReader {
     }
 
     public void completeOperation() {
-        this.printer.print(String.format("%s | %s | %s | %s", this.operationType, operationDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), amount, balance));
         this.printer.print(this.operationType, this.operationDate, amount, balance);
     }
 }
