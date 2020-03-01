@@ -4,7 +4,9 @@ import com.bankaccount.infra.controller.Controller;
 import com.bankaccount.infra.repository.InMemoryRepository;
 import com.bankaccount.infra.repository.Repository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+@EnableWebMvc
 public class Configuration {
     @Bean
     public Controller controller(Repository repository) {
@@ -12,7 +14,7 @@ public class Configuration {
     }
 
     @Bean
-    public Repository controller() {
+    public Repository repository() {
         return new InMemoryRepository();
     }
 }
