@@ -1,0 +1,16 @@
+version: '3'
+services:
+  reverse-proxy:
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile
+    image: reverse-proxy
+    ports:
+      - "80:80"
+  bank-account:
+    build:
+      context: ./infra
+      dockerfile: Dockerfile
+    image: bank-account
+    ports:
+      - "8080:8080"
