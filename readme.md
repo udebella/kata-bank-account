@@ -30,3 +30,17 @@ __In order to__ check my operations
 __As__ a bank client
 
 __I want__ to see the history (operation, date, amount, balance)  of my operations
+
+## Make it run
+
+# Pre-requisite
+`docker-compose`
+
+# Start the project
+Run the following command to build the project from a fresh checkout :
+```
+$ docker-compose build
+$ docker-compose up
+``` 
+/!\ TODO create a swagger
+Access the [api](http://localhost/versions) 
