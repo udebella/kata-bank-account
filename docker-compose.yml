@@ -9,7 +9,7 @@ services:
       - "80:80"
   bank-account:
     build:
-      context: ./infra
+      context: .
       dockerfile: Dockerfile
     image: bank-account
     ports:
