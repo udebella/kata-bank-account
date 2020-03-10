@@ -50,9 +50,14 @@ public class Controller {
 
         account.readAccount(historyPrinter);
 
-        return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(Duration.ofDays(365)))
-                .body(lines);
+        if (lines.size() == version) {
+            return ResponseEntity.ok()
+                    .cacheControl(CacheControl.maxAge(Duration.ofDays(365)))
+                    .body(lines);
+        }
+        return ResponseEntity.notFound()
+                .cacheControl(CacheControl.noCache())
+                .build();
     }
 
     @GetMapping(path = "/deposit/{amount}")

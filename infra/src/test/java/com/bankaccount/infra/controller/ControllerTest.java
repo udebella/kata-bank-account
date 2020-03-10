@@ -78,6 +78,18 @@ public class ControllerTest {
     }
 
     @Test
+    void should_not_cache_when_requested_history_does_not_exist() {
+        doReturn(Collections.emptyList()).when(repository).operations();
+
+        final ResponseEntity<?> response = controller.history(5);
+
+        final ResponseEntity<List<HistoryLine>> expectedResponse = ResponseEntity.notFound()
+                .cacheControl(CacheControl.noCache())
+                .build();
+        assertThat(response).isEqualTo(expectedResponse);
+    }
+
+    @Test
     void should_allow_deposits() {
         doReturn(Collections.emptyList()).when(repository).operations();
 
