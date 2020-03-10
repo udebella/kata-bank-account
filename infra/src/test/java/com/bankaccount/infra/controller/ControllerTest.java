@@ -28,7 +28,7 @@ public class ControllerTest {
     @BeforeEach
     void setUp() {
         repository = mock(Repository.class);
-        controller = new Controller(repository);
+        controller = new Controller(repository, () -> LocalDate.of(2020, Month.MARCH, 1));
     }
 
     @Test

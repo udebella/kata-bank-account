@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 @RequestMapping
 public class Controller {
     private static final Logger log = LoggerFactory.getLogger(Controller.class);
     public static final String HISTORY_PATH = "/history/{version}";
     private final Repository repository;
+    private final Supplier<LocalDate> dateSupplier;
 
-    public Controller(Repository repository) {
+    public Controller(Repository repository, Supplier<LocalDate> dateSupplier) {
         this.repository = repository;
+        this.dateSupplier = dateSupplier;
     }
 
     @GetMapping(path = "/versions")
@@ -81,6 +85,6 @@ public class Controller {
                 .stream()
                 .limit(version)
                 .toArray(Operation[]::new);
-        return new Account(operations);
+        return new Account(dateSupplier, operations);
     }
 }
