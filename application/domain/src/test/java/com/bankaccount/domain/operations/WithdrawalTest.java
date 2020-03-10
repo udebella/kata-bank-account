@@ -1,7 +1,7 @@
 package com.bankaccount.domain.operations;
 
-import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.money.Amount;
+import com.bankaccount.domain.money.Balance;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 

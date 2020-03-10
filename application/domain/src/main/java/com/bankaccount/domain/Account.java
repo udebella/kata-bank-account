@@ -1,11 +1,11 @@
 package com.bankaccount.domain;
 
-import com.bankaccount.domain.money.Balance;
+import com.bankaccount.domain.history.AccountReader;
 import com.bankaccount.domain.money.Amount;
+import com.bankaccount.domain.money.Balance;
 import com.bankaccount.domain.operations.Deposit;
 import com.bankaccount.domain.operations.Operation;
 import com.bankaccount.domain.operations.Withdrawal;
-import com.bankaccount.domain.history.AccountReader;
 
 import java.time.LocalDate;
 import java.util.List;
