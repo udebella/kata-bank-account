@@ -1,20 +1,21 @@
 package bankaccount;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AccountTest {
     private Account account;
     private Printer printer;
     private DateService dateService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         dateService = Mockito.mock(DateService.class);
         account = new Account(dateService);
@@ -26,9 +27,9 @@ public class AccountTest {
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void deposit_should_not_allow_negative_amounts() {
-        account.deposit(Amount.of(-10));
+        assertThatThrownBy(() -> account.deposit(Amount.of(-10))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -61,9 +62,9 @@ public class AccountTest {
         assertThat(account.balance()).isEqualTo(Amount.ZERO);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void withdraw_should_not_allow_negative_amounts() {
-        account.withdraw(Amount.of(-10));
+        assertThatThrownBy(() -> account.withdraw(Amount.of(-10))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
