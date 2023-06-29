@@ -1,113 +1,108 @@
-package bankaccount;
+package bankaccount.bankaccount
 
-import bankaccount.history.HistoryLine;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import java.time.LocalDate
+import java.time.Month
+import java.time.format.DateTimeFormatter
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-public class AccountTest {
-    private Account account;
-    private Printer printer;
-    private DateService dateService;
-
+class AccountTest {
+    private lateinit var account: Account
+    private lateinit var printer: Printer
+    private lateinit var dateService: DateService
     @BeforeEach
-    public void setUp() {
-        dateService = Mockito.mock(DateService.class);
-        account = new Account(dateService);
-        printer = Mockito.mock(Printer.class);
+    fun setUp() {
+        dateService = Mockito.mock(DateService::class.java)
+        account = Account(dateService)
+        printer = Mockito.mock(Printer::class.java)
+
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val date = LocalDate.parse("29-06-2023", formatter)
+
+        Mockito.`when`(dateService.now()).thenReturn(date)
     }
 
     @Test
-    public void balance_should_be_zero_by_default() {
-        assertThat(account.balance()).isEqualTo(Amount.ZERO);
+    fun balance_should_be_zero_by_default() {
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.ZERO)
     }
 
     @Test
-    public void deposit_should_not_allow_negative_amounts() {
-        assertThatThrownBy(() -> account.deposit(Amount.of(-10))).isInstanceOf(IllegalArgumentException.class);
+    fun deposit_should_not_allow_negative_amounts() {
+        Assertions.assertThatThrownBy { account.deposit(Amount.of(-10)) }.isInstanceOf(
+            IllegalArgumentException::class.java
+        )
     }
 
     @Test
-    public void deposit_should_update_account_balance() {
-        account.deposit(Amount.of(10));
-
-        assertThat(account.balance()).isEqualTo(Amount.of(10));
+    fun deposit_should_update_account_balance() {
+        account.deposit(Amount.of(10))
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.of(10))
     }
 
     @Test
-    public void multiple_deposit_should_update_account_balance() {
-        account.deposit(Amount.of(10));
-        account.deposit(Amount.of(10));
-
-        assertThat(account.balance()).isEqualTo(Amount.of(20));
+    fun multiple_deposit_should_update_account_balance() {
+        account.deposit(Amount.of(10))
+        account.deposit(Amount.of(10))
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.of(20))
     }
 
     @Test
-    public void multiple_deposit_of_different_amount_should_update_balance() {
-        account.deposit(Amount.of(10));
-        account.deposit(Amount.of(15));
-
-        assertThat(account.balance()).isEqualTo(Amount.of(25));
+    fun multiple_deposit_of_different_amount_should_update_balance() {
+        account.deposit(Amount.of(10))
+        account.deposit(Amount.of(15))
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.of(25))
     }
 
     @Test
-    public void withdraw_nothing_should_not_update_balance() {
-        account.withdraw(Amount.ZERO);
-
-        assertThat(account.balance()).isEqualTo(Amount.ZERO);
+    fun withdraw_nothing_should_not_update_balance() {
+        account.withdraw(Amount.ZERO)
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.ZERO)
     }
 
     @Test
-    public void withdraw_should_not_allow_negative_amounts() {
-        assertThatThrownBy(() -> account.withdraw(Amount.of(-10))).isInstanceOf(IllegalArgumentException.class);
+    fun withdraw_should_not_allow_negative_amounts() {
+        Assertions.assertThatThrownBy { account.withdraw(Amount.of(-10)) }.isInstanceOf(
+            IllegalArgumentException::class.java
+        )
     }
 
     @Test
-    public void withdraw_should_update_account_balance() {
-        account.withdraw(Amount.of(50));
-
-        assertThat(account.balance()).isEqualTo(Amount.of(-50));
+    fun withdraw_should_update_account_balance() {
+        account.withdraw(Amount.of(50))
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.of(-50))
     }
 
     @Test
-    public void multiple_withdraw_should_update_account_balance() {
-        account.withdraw(Amount.of(50));
-        account.withdraw(Amount.of(50));
-
-        assertThat(account.balance()).isEqualTo(Amount.of(-100));
+    fun multiple_withdraw_should_update_account_balance() {
+        account.withdraw(Amount.of(50))
+        account.withdraw(Amount.of(50))
+        Assertions.assertThat(account.balance()).isEqualTo(Amount.of(-100))
     }
 
     @Test
-    public void history_should_return_an_empty_list_when_empty() {
-        List<HistoryLine> history = account.history(printer);
-
-        assertThat(history).isEmpty();
+    fun history_should_return_an_empty_list_when_empty() {
+        val history = account.history(printer)
+        Assertions.assertThat(history).isEmpty()
     }
 
     @Test
-    public void history_should_keep_track_of_deposits() {
-        Mockito.when(dateService.now())
-                .thenReturn(LocalDate.of(2017, Month.AUGUST, 27));
-        account.deposit(Amount.of(1000));
-        account.history(printer);
-
-        Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€");
+    fun history_should_keep_track_of_deposits() {
+        Mockito.`when`(dateService.now())
+            .thenReturn(LocalDate.of(2017, Month.AUGUST, 27))
+        account.deposit(Amount.of(1000))
+        account.history(printer)
+        Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€")
     }
 
     @Test
-    public void history_should_keep_track_of_withdrawals() {
-        Mockito.when(dateService.now())
-                .thenReturn(LocalDate.of(2017, Month.AUGUST, 27));
-        account.withdraw(Amount.of(1000));
-        account.history(printer);
-
-        Mockito.verify(printer).print("WITHDRAW | 27/08/2017 | +10€ | -10€");
+    fun history_should_keep_track_of_withdrawals() {
+        Mockito.`when`(dateService.now())
+            .thenReturn(LocalDate.of(2017, Month.AUGUST, 27))
+        account.withdraw(Amount.of(1000))
+        account.history(printer)
+        Mockito.verify(printer).print("WITHDRAW | 27/08/2017 | +10€ | -10€")
     }
 }

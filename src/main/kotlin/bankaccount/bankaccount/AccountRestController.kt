@@ -1,7 +1,5 @@
 package bankaccount.bankaccount
 
-import bankaccount.Account
-import bankaccount.Amount
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
@@ -14,7 +12,7 @@ class AccountRestController {
     @GetMapping("/history")
     private fun history(): String {
         val result = StringBuilder()
-        account.history { message: String? ->
+        account.history { message: String ->
             if (result.toString().length != 0) {
                 result.append("\n")
             }
