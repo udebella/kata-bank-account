@@ -1,5 +1,6 @@
-package bankaccount.bankaccount
+package bankaccount.bankaccount.history
 
+import bankaccount.bankaccount.Amount
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

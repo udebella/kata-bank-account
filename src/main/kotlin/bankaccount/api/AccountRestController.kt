@@ -1,6 +1,7 @@
-package bankaccount.bankaccount
+package bankaccount.api
 
-import org.springframework.http.MediaType
+import bankaccount.bankaccount.Account
+import bankaccount.bankaccount.Amount
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 

@@ -1,6 +1,8 @@
 package bankaccount.bankaccount
 
-import java.util.function.Consumer
+import bankaccount.bankaccount.history.DepositLine
+import bankaccount.bankaccount.history.HistoryLine
+import bankaccount.bankaccount.history.WithdrawLine
 
 class Account(private val dateService: DateService) {
     private val history: MutableList<HistoryLine> = ArrayList()

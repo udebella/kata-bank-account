@@ -1,4 +1,4 @@
-package bankaccount.bankaccount
+package bankaccount.api
 
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer

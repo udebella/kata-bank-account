@@ -1,4 +1,4 @@
-package bankaccount.bankaccount
+package bankaccount.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
