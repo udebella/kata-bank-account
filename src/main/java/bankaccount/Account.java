@@ -31,9 +31,10 @@ public class Account {
         }
     }
 
-    public void history(Printer printer) {
+    public List<HistoryLine> history(Printer printer) {
         printer.print("OPERATION | DATE | AMOUNT | BALANCE");
         history.forEach(historyLine -> historyLine.print(printer));
+        return history;
     }
 
     public Amount balance() {

@@ -1,11 +1,13 @@
 package bankaccount;
 
+import bankaccount.history.HistoryLine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -83,10 +85,10 @@ public class AccountTest {
     }
 
     @Test
-    public void history_should_print_a_description_line() {
-        account.history(printer);
+    public void history_should_return_an_empty_list_when_empty() {
+        List<HistoryLine> history = account.history(printer);
 
-        Mockito.verify(printer).print("OPERATION | DATE | AMOUNT | BALANCE");
+        assertThat(history).isEmpty();
     }
 
     @Test
