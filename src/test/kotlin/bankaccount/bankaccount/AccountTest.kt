@@ -10,13 +10,11 @@ import java.time.format.DateTimeFormatter
 
 class AccountTest {
     private lateinit var account: Account
-    private lateinit var printer: Printer
     private lateinit var dateService: DateService
     @BeforeEach
     fun setUp() {
         dateService = Mockito.mock(DateService::class.java)
         account = Account(dateService)
-        printer = Mockito.mock(Printer::class.java)
 
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val date = LocalDate.parse("29-06-2023", formatter)
@@ -84,17 +82,23 @@ class AccountTest {
 
     @Test
     fun history_should_return_an_empty_list_when_empty() {
-        val history = account.history(printer)
+        val history = account.history()
         Assertions.assertThat(history).isEmpty()
     }
 
     @Test
     fun history_should_keep_track_of_deposits() {
+        val today = LocalDate.of(2017, Month.AUGUST, 27)
         Mockito.`when`(dateService.now())
-            .thenReturn(LocalDate.of(2017, Month.AUGUST, 27))
+            .thenReturn(today)
         account.deposit(Amount.of(1000))
-        account.history(printer)
-        Mockito.verify(printer).print("DEPOSIT | 27/08/2017 | +10€ | +10€")
+
+        val history = account.history()
+
+        val expectedLine = DepositLine.of(
+            Amount.of(1000), today, Amount.of(1000)
+        )
+        Assertions.assertThat(history).containsExactly(expectedLine)
     }
 
     @Test
@@ -102,7 +106,10 @@ class AccountTest {
         Mockito.`when`(dateService.now())
             .thenReturn(LocalDate.of(2017, Month.AUGUST, 27))
         account.withdraw(Amount.of(1000))
-        account.history(printer)
-        Mockito.verify(printer).print("WITHDRAW | 27/08/2017 | +10€ | -10€")
+
+        val history = account.history()
+
+        val expectedLine = WithdrawLine.of(Amount.of(1000), LocalDate.of(2017, Month.AUGUST, 27), Amount.of(1000))
+        Assertions.assertThat(history).containsExactly(expectedLine)
     }
 }

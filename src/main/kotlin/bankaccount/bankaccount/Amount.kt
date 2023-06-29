@@ -4,7 +4,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
 
-class Amount private constructor(private val value: Int) {
+class Amount private constructor(public val value: Int) {
     fun add(amountToAdd: Amount): Amount {
         return of(amountToAdd.value + value)
     }

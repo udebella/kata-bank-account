@@ -18,9 +18,7 @@ class Account(private val dateService: DateService) {
         require(!amount.isNegative) { "Negative amounts are not allowed" }
     }
 
-    fun history(printer: Printer): List<HistoryLine> {
-        printer.print("OPERATION | DATE | AMOUNT | BALANCE")
-        history.forEach(Consumer { historyLine: HistoryLine -> historyLine.print(printer) })
+    fun history(): List<HistoryLine> {
         return history
     }
 

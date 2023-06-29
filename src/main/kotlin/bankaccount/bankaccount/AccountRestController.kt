@@ -1,5 +1,6 @@
 package bankaccount.bankaccount
 
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
@@ -9,16 +10,10 @@ class AccountRestController {
 
     private val account: Account = Account { LocalDate.now() }
 
+
     @GetMapping("/history")
-    private fun history(): String {
-        val result = StringBuilder()
-        account.history { message: String ->
-            if (result.toString().length != 0) {
-                result.append("\n")
-            }
-            result.append(message)
-        }
-        return result.toString()
+    private fun history(): List<HistoryDTO> {
+        return account.history().map { HistoryDTO(it.printOperationType(), it.date, it.amount.value, it.currentBalance.value) }
     }
 
     @PostMapping("/deposit")
@@ -28,3 +23,4 @@ class AccountRestController {
 }
 
 class AmountDto (val amount: Int)
+class HistoryDTO (val operation: String, val date: LocalDate, val amount: Int, val balance: Int)

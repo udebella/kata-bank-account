@@ -23,18 +23,16 @@ class BankaccountApplicationTests {
 	fun `prints empty history for an empty account`() {
 		mvc.perform(get("/account/history"))
 			.andExpect(status().`is`(200))
-			.andExpect(content().string("OPERATION | DATE | AMOUNT | BALANCE"))
+			.andExpect(content().json("[]"))
 	}
 
 	@Test
 	fun `deposit 500`() {
 		mvc.perform(post("/account/deposit").contentType(MediaType.APPLICATION_JSON).content("{\"amount\":500}"))
 			.andExpect(status().`is`(200))
-
 		mvc.perform(get("/account/history"))
 			.andExpect(status().`is`(200))
-			.andExpect(content().string("""OPERATION | DATE | AMOUNT | BALANCE
-DEPOSIT | 29/06/2023 | +5€ | +5€"""))
+			.andExpect(content().json("[{ \"operation\": \"DEPOSIT\", \"date\": \"29-06-2023\", \"amount\": 500, \"balance\": 500 }]"))
 	}
 
 }
