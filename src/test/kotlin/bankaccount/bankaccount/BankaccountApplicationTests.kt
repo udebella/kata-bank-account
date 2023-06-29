@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -22,6 +24,17 @@ class BankaccountApplicationTests {
 		mvc.perform(get("/account/history"))
 			.andExpect(status().`is`(200))
 			.andExpect(content().string("OPERATION | DATE | AMOUNT | BALANCE"))
+	}
+
+	@Test
+	fun `deposit 500`() {
+		mvc.perform(post("/account/deposit").contentType(MediaType.APPLICATION_JSON).content("{\"amount\":500}"))
+			.andExpect(status().`is`(200))
+
+		mvc.perform(get("/account/history"))
+			.andExpect(status().`is`(200))
+			.andExpect(content().string("""OPERATION | DATE | AMOUNT | BALANCE
+DEPOSIT | 29/06/2023 | +5€ | +5€"""))
 	}
 
 }
